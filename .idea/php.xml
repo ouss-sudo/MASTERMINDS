@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/sql-formatter" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/migrations" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/doctrine-migrations-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/laminas/laminas-code" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/friendsofphp/proxy-manager-lts" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/form" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/monolog-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/security-core" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/password-hasher" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/psr/link" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/web-link" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/security-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/monolog-bridge" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/doctrine-bridge" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/redis-messenger" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/security-http" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/debug-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/web-profiler-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/doctrine-messenger" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/amqp-messenger" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/security-guard" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/notifier" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/messenger" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/serializer" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/twig/extra-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/sensio/framework-extra-bundle" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/composer" />
+      <path value="$PROJECT_DIR$/remborsement/vendor/egulias/email-validator" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/remborsement/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>

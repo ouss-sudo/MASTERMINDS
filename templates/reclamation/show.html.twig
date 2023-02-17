@@ -1,0 +1,42 @@
+{% extends 'basebackreclamation.html.twig' %}
+
+{% block title %}Reclamation{% endblock %}
+
+{% block list %}
+    <h1>Reclamation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="col">Id</th>
+                <td>{{ reclamation.id }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Objet</th>
+                <td>{{ reclamation.objet }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Description</th>
+                <td>{{ reclamation.description }}</td>
+            </tr>
+            <tr>
+                <th scope="col">DateReclamation</th>
+                <td>{{ reclamation.dateReclamation ? reclamation.dateReclamation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th scope="col">DateTraitement</th>
+                <td>{{ reclamation.dateTraitement ? reclamation.dateTraitement|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th scope="col"> Etat</th>
+                <td>{{ reclamation.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_index') }}">back to list</a>
+
+
+
+    {{ include('reclamation/_delete_form.html.twig') }}
+{% endblock %}

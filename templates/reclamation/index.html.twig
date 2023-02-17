@@ -1,0 +1,43 @@
+{% extends 'basebackreclamation.html.twig' %}
+{% block title %}
+    <title>Gestion des Réclamation</title>
+{% endblock %}
+{% block list %}
+    <h1>Liste des réclamation</h1>
+
+
+    <table class="table datatable">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Objet</th>
+                <th scope="col">Description</th>
+                <th scope="col">DateReclamation</th>
+                <th scope="col">DateTraitement</th>
+                <th scope="col">Etat</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.objet }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.dateReclamation ? reclamation.dateReclamation|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.dateTraitement ? reclamation.dateTraitement|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.etat }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">Modifier</a>
+                    <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">details</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune réclamation</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
