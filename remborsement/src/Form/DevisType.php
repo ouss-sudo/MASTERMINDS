@@ -14,6 +14,10 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\Rapport;
 use App\Entity\RapportType;
+
+
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 class DevisType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -22,16 +26,23 @@ class DevisType extends AbstractType
         
     // Champ pour sélectionner le rapport associé
     
-            ->add('montant_min') 
-            ->add('montant_max') 
-            ->add('ajouter',SubmitType::class)
+    ->add('montant_min') 
+    ->add('montant_max')
+    ->add('rapport', EntityType::class, [
+        'class' => Rapport::class,
+        'choice_label' => 'id',
+        'placeholder' => 'Choisissez un rapport',
+    ])
+    ->add('ajouter',SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            'data_class' => Devis::class,
             // Configure your form options here
         ]);
     }
+
 }

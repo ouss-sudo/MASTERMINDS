@@ -34,7 +34,7 @@ class DevisController extends AbstractController
         $em=$this->getDoctrine()->getManager() ; 
         $em->persist($devis) ; 
         $em->flush();
-            return $this->redirectToRoute('app_devis') ; 
+            return $this->redirectToRoute('afficherdevis') ; 
 
        }
             return $this->render('devis/createdevis.html.twig',['f'=>$form->createView()]); 
