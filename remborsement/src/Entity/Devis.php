@@ -1,10 +1,17 @@
 <?php
 
 namespace App\Entity;
-use App\Entity\Rapport;
+use App\Controller\DevisType;
+use App\Entity\Rapport ; 
+use App\Repository\RapportRepository;
+use App\Controller\Request;
 use App\Repository\DevisRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\DBAL\Types\Types;
+use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DevisRepository::class)]
 class Devis
 {
@@ -14,29 +21,17 @@ class Devis
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?float $montant_max = null;
-
-    #[ORM\Column]
     private ?float $montant_min = null;
 
-    #[ORM\OneToOne(inversedBy: 'num', cascade: ['persist', 'remove'])]
-    private ?Rapport $num_rapport = null;
+    #[ORM\Column]
+    private ?float $montant_max = null;
+
+    #[ORM\OneToOne(inversedBy: 'devis', cascade: ['persist', 'remove'])]
+    private ?Rapport $rapport = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMontantMax(): ?float
-    {
-        return $this->montant_max;
-    }
-
-    public function setMontantMax(float $montant_max): self
-    {
-        $this->montant_max = $montant_max;
-
-        return $this;
     }
 
     public function getMontantMin(): ?float
@@ -51,14 +46,26 @@ class Devis
         return $this;
     }
 
-    public function getNumRapport(): ?Rapport
+    public function getMontantMax(): ?float
     {
-        return $this->num_rapport;
+        return $this->montant_max;
     }
 
-    public function setNumRapport(?Rapport $num_rapport): self
+    public function setMontantMax(float $montant_max): self
     {
-        $this->num_rapport = $num_rapport;
+        $this->montant_max = $montant_max;
+
+        return $this;
+    }
+
+    public function getRapport(): ?Rapport
+    {
+        return $this->rapport;
+    }
+
+    public function setRapport(?Rapport $rapport): self
+    {
+        $this->rapport = $rapport;
 
         return $this;
     }

@@ -70,19 +70,19 @@ class RemboursementController extends AbstractController
        }
             return $this->render('remboursement/createrapport.html.twig',['f'=>$form->createView()]); 
     }
-    #[Route('/supprimerrapport/{num_rapport}', name: 'supprimerrapport')]
-    public function deleterapport($num_rapport)
+    #[Route('/supprimerrapport/{id}', name: 'supprimerrapport')]
+    public function deleterapport($id)
     {
-        $rapport = $this->getDoctrine()->getRepository(rapport::class)->find($num_rapport);
+        $rapport = $this->getDoctrine()->getRepository(rapport::class)->find($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($rapport);
         $em->flush();
         return $this->redirectToRoute("app_remboursement");
     }
-    #[Route('/modifierrapport/{num_rapport}', name: 'modifierrapport')]
-    public function modifierrapport(Request $request,$num_rapport): Response
+    #[Route('/modifierrapport/{id}', name: 'modifierrapport')]
+    public function modifierrapport(Request $request,$id): Response
     {
-       $rapport= $this->getDoctrine()->getManager()->getRepository(rapport::class)->find($num_rapport);
+       $rapport= $this->getDoctrine()->getManager()->getRepository(rapport::class)->find($id);
        $form=$this->createForm(RapportType::class,$rapport)  ;
        $form->handleRequest($request);
        if ($form->isSubmitted() && $form->isValid())

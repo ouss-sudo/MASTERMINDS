@@ -1,0 +1,45 @@
+{% extends 'frontrapport.html.twig' %}
+{% block title %}Hello DevisController!{% endblock %}
+
+{% block affichage %}
+
+
+
+          <a href="{{ path('adddevis') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+
+<div class="row">
+ <div  style="display: flex;align-items: center;justify-content: center;margin-top: 40px; margin-left:400px;padding:5px; width:1000px;">
+              <table class="table table-striped">
+
+                                 {% for devis in b %} 
+
+    <tr>
+   <th>id</th>
+   <td>{{devis.getId()}}</td>
+    </tr>
+   
+           <tr>
+   <th>setMontantMax</th>
+   <td>{{devis.getMontantMax()}}</td>
+       </tr>
+    <tr>
+   <th>setMontantMin</th>
+   <td>{{devis.getMontantMin()}}</td>
+       </tr>
+    <tr>
+   <th>id_rapport</th>
+   <td>{{devis.getRapport()}}</td>
+       </tr>
+  <td class="hidden-column">
+ <a class="btn btn-warning" href="{{ path('modifierdevis',{'id':devis.getId()})}}">modifier</a>
+</td>
+<td class="hidden-column">
+ <a class="btn btn-danger"href="{{ path('supprimerdevis',{'id':devis.getId()})}}">supprimer</a>
+</td>
+  
+            
+{% endfor %} 
+</table>
+</div> 
+</div>
+{% endblock %}

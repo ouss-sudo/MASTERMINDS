@@ -17,7 +17,7 @@
 
     <tr>
    <th>num_rapport</th>
-   <td>{{rapport.getNumRapport()}}</td>
+   <td>{{rapport.getId()}}</td>
     </tr>
     <tr>
 
@@ -78,10 +78,10 @@
               
 
 <td class="hidden-column">
- <a class="btn btn-warning" href="{{ path('modifierrapport',{'num_rapport':rapport.getNumRapport()})}}">modifier</a>
+ <a class="btn btn-warning" href="{{ path('modifierrapport',{'id':rapport.getId()})}}">modifier</a>
 </td>
 <td class="hidden-column">
- <a class="btn btn-danger"href="{{ path('supprimerrapport',{'num_rapport':rapport.getNumRapport()})}}">supprimer</a>
+ <a class="btn btn-danger"href="{{ path('supprimerrapport',{'id':rapport.getId()})}}">supprimer</a>
 </td>
 </tr>
 {% endfor %}

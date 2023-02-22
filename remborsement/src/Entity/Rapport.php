@@ -20,7 +20,7 @@ class Rapport
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $num_rapport = null;
+    private ?int $id = null;
 /**
      * @Assert\NotBlank(message=" date rapport doit etre non vide")
      * 
@@ -118,10 +118,15 @@ class Rapport
     #[ORM\Column(length: 255)]
     private ?string $id_expert = null;
 
+    #[ORM\OneToOne(mappedBy: 'rapport', cascade: ['persist', 'remove'])]
+    private ?Devis $devis = null;
+
+    
+
   
-    public function getNumRapport(): ?int
+    public function getId(): ?int
     {
-        return $this->num_rapport;
+        return $this->id;
     }
 
  
@@ -269,4 +274,30 @@ class Rapport
 
         return $this;
     }
+
+    public function getDevis(): ?Devis
+    {
+        return $this->devis;
+    }
+
+    public function setDevis(?Devis $devis): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($devis === null && $this->devis !== null) {
+            $this->devis->setRapport(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($devis !== null && $devis->getRapport() !== $this) {
+            $devis->setRapport($this);
+        }
+
+        $this->devis = $devis;
+
+        return $this;
+    }
+
+    
+
+    
 }

@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Form;
-use App\Entity\Rapport;
 use App\Entity\Devis;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,34 +12,18 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-class RapportType extends AbstractType
+use App\Entity\Rapport;
+use App\Entity\RapportType;
+class DevisType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
-          
-            ->add('date_rapport')
-            ->add('num_serievoiture')
-            ->add('modele_voiture')
-            ->add('matricule')
-            ->add('couleur_voiture')
-            ->add('dateMiseEnCirculation')
-            ->add('mandant')
-            ->add('photo_accident', FileType::class, [
-                'data_class' => null,
-            ])
-            
-            ->add('conclusions',TextareaType::class)
-            ->add('montant_exprime')
-            ->add('etat_rapport',ChoiceType::class,[
-                'choices'=>[
-                    'En cours traitement'=>'En cours traitement','Traitée'=>'Traitée',
-                    
-                ]
-            ])
-            
-            ->add('id_expert')
+        
+    // Champ pour sélectionner le rapport associé
+    
+            ->add('montant_min') 
+            ->add('montant_max') 
             ->add('ajouter',SubmitType::class)
         ;
     }
