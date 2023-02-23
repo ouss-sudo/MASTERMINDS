@@ -12,7 +12,7 @@ use App\Form\RapportType;
 use App\Repository\DevisRepository ; 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use App\Form\UpdatedevisType;
 class DevisController extends AbstractController
 {
    
@@ -52,7 +52,7 @@ class DevisController extends AbstractController
     public function modifierrapport(Request $request,$id): Response
     {
        $devis= $this->getDoctrine()->getManager()->getRepository(devis::class)->find($id);
-       $form=$this->createForm(DevisType::class,$devis)  ;
+       $form=$this->createForm(UpdatedevisType::class,$devis)  ;
        $form->handleRequest($request);
        if ($form->isSubmitted() && $form->isValid())
        {
@@ -61,7 +61,7 @@ class DevisController extends AbstractController
             return $this->redirectToRoute('afficherdevis') ; 
 
        }
-            return $this->render('devis/createdevis.html.twig',['f'=>$form->createView()]); 
+            return $this->render('devis/updatedevis.html.twig',['f'=>$form->createView()]); 
     }
 
 }

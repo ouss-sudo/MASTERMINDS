@@ -1,14 +1,17 @@
-{% extends 'frontrapport.html.twig' %}
-{% block title %}Hello DevisController!{% endblock %}
+{% extends 'base.html.twig' %}
 
-{% block affichage %}
+
+{% block body %}
 
 
 
           <a href="{{ path('adddevis') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
 
 <div class="row">
- <div  style="display: flex;align-items: center;justify-content: center;margin-top: 40px; margin-left:400px;padding:5px; width:1000px;">
+<div  style="display: flex;align-items: center;justify-content: center;margin-top: 80px; padding:45px;  ">
+<div class="card">
+          <a href="{{ path('adddevis') }}"><i class="ri-arrow-left-circle-fill" style="display: flex; align-items: center; justify-content: center;font-size: 50px;"></i></a>
+            <div class="card-body">
               <table class="table table-striped">
 
                                  {% for devis in b %} 
@@ -30,16 +33,21 @@
    <th>id_rapport</th>
    <td>{{devis.getRapport()}}</td>
        </tr>
+ 
+
   <td class="hidden-column">
- <a class="btn btn-warning" href="{{ path('modifierdevis',{'id':devis.getId()})}}">modifier</a>
+ <a class="btn btn-warning" href="{{ path('modifierdevis',{'id':devis.getId()})}}"><img src="{{ asset('assets/img/update.png') }}" height="35" width="35"></a>
 </td>
 <td class="hidden-column">
- <a class="btn btn-danger"href="{{ path('supprimerdevis',{'id':devis.getId()})}}">supprimer</a>
+ <a class="btn btn-danger"href="{{ path('supprimerdevis',{'id':devis.getId()})}}"onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette Rapport ?')"><img src="{{ asset('assets/img/delete.png') }}" height="30" width="30"></a>
 </td>
-  
+
             
 {% endfor %} 
 </table>
 </div> 
+</div>
+</div>
+</div>
 </div>
 {% endblock %}

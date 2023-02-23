@@ -50,24 +50,37 @@
 <th> mandant</th>    
 <td>{{rapport.getMandant()}}</td>
 </tr>
-    <tr>
-
-   <th>photo_accident </th>
-   <td>{{rapport.getPhotoAccident()}}</td>
-       </tr>
+  
     <tr>
 
    <th> conclusions</th>
    <td class="hidden-column">{{rapport.getConclusions()}}</td>
        </tr>
     <tr>
-
+<th>photo</th> 
+<td>
+            {% if rapport.file is defined and rapport.file %}
+                <a href="{{ asset('uploads/files/' ~ rapport.file) }}" target="_blank">
+                    <button type="button" class="btn btn-warning">{{ rapport.file }}</button>
+                </a>
+            {% else %}
+                Aucun fichier
+            {% endif %}
+        </td> 
+        </tr>
+        <tr>
    <th> montant_exprime</th>
    <td class="hidden-column">{{rapport.getMontantExprime()}}</td>
        </tr>
     <tr>
 <th> etat_rapport</th>
-<td class="hidden-column">{{rapport.getEtatRapport()}}</td>
+   {% if rapport. getEtatRapport()=='Traitée'  %}
+                    <td><img src="{{ asset('assets/img/check.png') }}" height="40" width="40"></td>
+                {% elseif rapport. getEtatRapport()=='En attente' %}
+                    <td><img src="{{ asset('assets/img/wait.png') }}" height="50" width="50"></td>
+                {% else %}
+                    <td><img src="{{ asset('assets/img/loading.png') }}" height="40" width="40"></td>
+                {% endif %}
     </tr>
         <tr>
 
@@ -75,13 +88,15 @@
 <td class="hidden-column">{{rapport.getIdExpert()}}</td> 
        </tr>
   
-              
+             
+
+
 
 <td class="hidden-column">
- <a class="btn btn-warning" href="{{ path('modifierrapport',{'id':rapport.getId()})}}">modifier</a>
+ <a class="btn btn-warning" href="{{ path('modifierrapport',{'id':rapport.getId()})}}"><img src="{{ asset('assets/img/update.png') }}" height="35" width="35"></a>
 </td>
 <td class="hidden-column">
- <a class="btn btn-danger"href="{{ path('supprimerrapport',{'id':rapport.getId()})}}">supprimer</a>
+ <a class="btn btn-danger"href="{{ path('supprimerrapport',{'id':rapport.getId()})}}"onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette Rapport ?')"><img src="{{ asset('assets/img/delete.png') }}" height="30" width="30"></a>
 </td>
 </tr>
 {% endfor %}
@@ -93,6 +108,6 @@
 
            
 
- 
+ </div>
 </div>
 {% endblock %}

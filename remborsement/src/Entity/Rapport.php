@@ -7,6 +7,8 @@ use App\Repository\RapportRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Controller\Request;
+use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -85,13 +87,7 @@ class Rapport
      */
     #[ORM\Column(length: 40)]
     private ?string $mandant = null;
-/**
-     * @Assert\NotBlank(message=" photo_accident doit etre non vide")
-     * 
-     * 
-     */
-    #[ORM\Column(length: 255)]
-    private ?string $photo_accident = null;
+
 /**
      * @Assert\NotBlank(message=" conclusions doit etre non vide")
      * 
@@ -108,7 +104,7 @@ class Rapport
     private ?float $montant_exprime = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $etat_rapport = null;
+    private ?string $etat_rapport ="En attente";
 /**
      * @Assert\NotBlank(message=" id expert doit etre non vide")
      * 
@@ -120,6 +116,9 @@ class Rapport
 
     #[ORM\OneToOne(mappedBy: 'rapport', cascade: ['persist', 'remove'])]
     private ?Devis $devis = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $file = null;
 
     
 
@@ -300,6 +299,18 @@ class Rapport
     public function __toString()
     {
         return $this->id;
+    }
+
+    public function getFile(): ?string
+    {
+        return $this->file;
+    }
+
+    public function setFile(?string $file): self
+    {
+        $this->file = $file;
+
+        return $this;
     }
 
     

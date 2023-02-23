@@ -1,75 +1,132 @@
 {% extends 'frontrapport.html.twig' %}
 {% block affichage %}
 
+<style>
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
 
-        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 50px; padding:15px;  ">
+.ed_element_wrapper_form{
+  background-color:#21202078;
+  padding:15px;
+  max-width:941px;
+  width:100%;
+  margin:50px;
+  float:left;
+  position: relative;
+left: 200px;
+}
 
-          <div class="card">
-          <a href="{{ path('app_remboursement') }}"><i class="ri-arrow-left-circle-fill" style="display: flex; align-items: center; justify-content: center;font-size: 50px;"></i></a>
-            <div class="card-body">
+.ed_element_wrapper_form .form-group{
+  margin-bottom:15px;
+}
+.ed_element_wrapper_form .form-group .form-control{
+  border:1px solid #ccc;
+  height:40px;
+  padding:15px;
+  width:100%;
+}
+
+
+
+/* inline form start */
+.ed_element_wrapper_form .form_inline:before,
+.ed_element_wrapper_form .form_inline:after{
+    content: "";
+    display: table;
+    width: 100%;
+}
+.ed_element_wrapper_form .form_inline .form-group{
+    width:calc(50% - 10px);
+    float:left;
+}
+.ed_element_wrapper_form .form_inline .form-group:nth-child(2n + 1){
+    float:right;
+}
+
+/* inline form end */
+</style>
+      
+       
               <h5 class="card-title"  style= "display: flex; align-items: center; justify-content: center;">RAPPORT</h5>
    
               <!-- General Form Elements -->
 {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}            
-               
-                  <label for="inputText" class="col-sm-4 col-form-label">date rapport</label>
-                  <div class="col-sm-10">
-                      {{form_widget(f.date_rapport,{'attr':{'class':'form-control'}})}} 
+               <div class="ed_element_wrapper_form">
+    <form class="pc_input_form">
+      <div class="form_input_app_div form_inline">
+      <div class="form-group pc_input_section">
+               <h5>   <label for="" class="col-sm-6 col-form-label"style="color:white;">date rapport</label></h5>
+                
+                 <div class="col-sm-10">
+                      {{form_widget(f.date_rapport,{'attr':{'class':''}})}} 
+                      
+                       </div>
+                <div style="color:red">   {{ form_errors(f.date_rapport,{'attr':{'class':'text-danger'}}) }} </div>
                 </div>
-                              <div style="color:red">   {{ form_errors(f.date_rapport,{'attr':{'class':'text-danger'}}) }} </div>
-
-                  <label for="inputText" class="col-sm-8 col-form-label">Num serie voiture</label>
-                  <div class="col-sm-10">
+                             
+ <div class="form-group pc_input_section">
+              <h5>    <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">Num serie voiture</label></h5>
+                    <div class="col-sm-10">
                       {{form_widget(f.num_serievoiture,{'attr':{'class':'form-control'}})}} 
-                </div>
+                 </div>
                                              <div style="color:red"> {{ form_errors(f.num_serievoiture,{'attr':{'class':'text-danger'}}) }}</div>
-
-                  <label for="inputText" class="col-sm-6 col-form-label">modele voiture</label>
+</div> 
+<div class="form-group pc_input_section">
+            <h5>      <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">modele voiture</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.modele_voiture,{'attr':{'class':'form-control'}})}} 
                 </div>
                                             <div style="color:red">       {{ form_errors(f.modele_voiture,{'attr':{'class':'text-danger'}}) }} </div>
-
-                  <label for="inputText" class="col-sm-4 col-form-label">matricule</label>
+</div><div class="form-group pc_input_section">
+               <h5>   <label for="inputText" class="col-sm-4 col-form-label"style="color:white;">matricule</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.matricule,{'attr':{'class':'form-control'}})}} 
                 </div>
                                   <div style="color:red">    {{ form_errors(f.matricule,{'attr':{'class':'text-danger'}}) }} </div>
-
-                  <label for="inputText" class="col-sm-6 col-form-label">couleur voiture</label>
+</div><div class="form-group pc_input_section">
+               <h5>   <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">couleur voiture</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.couleur_voiture,{'attr':{'class':'form-control'}})}} 
                 </div>
                                  <div style="color:red">  {{ form_errors(f.couleur_voiture,{'attr':{'class':'text-danger'}}) }} </div>
-
-                  <label for="inputText" class="col-sm-8 col-form-label">dateMiseEnCirculation</label>
+</div><div class="form-group pc_input_section">
+                <h5>  <label for="" class="col-sm-8 col-form-label"style="color:white;">dateMiseEnCirculation</label></h5>
                   <div class="col-sm-10">
-                      {{form_widget(f.dateMiseEnCirculation,{'attr':{'class':'form-control'}})}} 
+                      {{form_widget(f.dateMiseEnCirculation,{'attr':{'class':''}})}} 
                 </div>
                               <div style="color:red">  {{ form_errors(f.dateMiseEnCirculation,{'attr':{'class':'text-danger'}}) }} </div>
-
-                  <label for="inputText" class="col-sm-4 col-form-label">mandant</label>
+</div>
+<div class="form-group pc_input_section">
+                <h5>  <label for="inputText" class="col-sm-4 col-form-label"style="color:white;">mandant</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.mandant,{'attr':{'class':'form-control'}})}} 
                 </div>
                          <div style="color:red">   {{ form_errors(f.mandant,{'attr':{'class':'text-danger'}}) }} </div>
 
-                 
-                 <label for="inputNumber" class="col-sm-8 col-form-label">photo accident</label>
+                </div>
+ <div class="form-group pc_input_section">
+                <h5> <label for="" class="col-sm-8 col-form-label"style="color:white;">photo accident</label></h5>
                   <div class="col-sm-10">
-  {{form_widget(f.photo_accident,{'attr':{'class':'form-control'}})}}  
+  {{form_widget(f.file,{'attr':{'class':''}})}}</div>
+                     <div style="color:red">   {{ form_errors(f.file,{'attr':{'class':'text-danger'}}) }}  </div>
 
-                  </div>
-                     <div style="color:red">   {{ form_errors(f.photo_accident,{'attr':{'class':'text-danger'}}) }}  </div>
-
-                  <label for="inputText" class="col-sm-6 col-form-label">montant exprime</label>
+</div>
+<div class="form-group pc_input_section">
+               <h5>   <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">montant exprime</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.montant_exprime,{'attr':{'class':'form-control'}})}} 
                 </div>
                             <div style="color:red">   {{ form_errors(f.montant_exprime,{'attr':{'class':'text-danger'}}) }} </div>
 
-                
-                  <label for="inputPassword" class="col-sm-4 col-form-label">conclusions</label>
+                </div>
+                <div class="form-group pc_input_section">
+                 <h5>  <label for="inputPassword" class="col-sm-4 col-form-label"style="color:white;">conclusions</label> </h5>
                   <div class="col-sm-10">
                                       
 
@@ -78,18 +135,14 @@
                 </div>
                                        <div style="color:red">            {{ form_errors(f.conclusions,{'attr':{'class':'text-danger'}}) }} </div>
 
-                  <label for="inputText" class="col-sm-4 col-form-label">etat rapport</label>
-                  <div class="col-sm-10">
-                      {{form_widget(f.etat_rapport,{'attr':{'class':'form-control'}})}} 
                  </div>
-                                      <div style="color:red">             {{ form_errors(f.etat_rapport,{'attr':{'class':'text-danger'}}) }} </div>
-
-                  <label for="inputText" class="col-sm-4 col-form-label">id expert</label>
+                 <div class="form-group pc_input_section">
+                <h4>  <label for="inputText" class="col-sm-4 col-form-label"style="color:white;">id expert</label></h4>
                   <div class="col-sm-10">
                       {{form_widget(f.id_expert,{'attr':{'class':'form-control'}})}} 
                  </div>
                           <div style="color:red">             {{ form_errors(f.id_expert,{'attr':{'class':'text-danger'}}) }} </div>
-
+</div>
                   <div class="col-sm-10"  style="display: flex;align-items: center;justify-content: center; margin-top:20px;">
                  {{form_widget(f.ajouter,{'attr':{'class':"btn btn-primary"}})}} 
                   </div>
@@ -99,9 +152,9 @@
 
                      {{form_end(f)}}
             </div>
-          </div>
+           </form>
+
 </div>
-        </div>
-        </div>
+   
         
 {% endblock %}

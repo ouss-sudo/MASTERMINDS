@@ -2,27 +2,26 @@
 {% block body %}
 
 <div class="row">
-        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 80px; padding:45px;  ">
-
-          <div class="card">
-          <a href="{{ path('app_remboursement') }}"><i class="ri-arrow-left-circle-fill" style="display: flex; align-items: center; justify-content: center;font-size: 50px;"></i></a>
-            <div class="card-body">
+<div  style="display: flex;align-items: center;justify-content: center;margin-top: 80px; padding:30px; margin-left: 20px; padding:20px;">
+<div class="card">
+<div class="card-body">
               <h5 class="card-title"  style= "display: flex; align-items: center; justify-content: center;">RAPPORT</h5>
    
               <!-- General Form Elements -->
  <!-- General Form Elements -->
 {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}            
-                  <label for="inputText" class="col-sm-4 col-form-label">num rapport</label>
+                <div class="form-inline">
+                  <label for="inputText" class="col-sm-4 col-form-label">numgg rapport</label>
                   <div class="col-sm-10">
                       {{form_widget(f.num_rapport,{'attr':{'class':'form-control'}})}} 
                 </div>
                <div style="color:red">    {{ form_errors(f.num_rapport,{'attr':{'class':'text-danger'}}) }} </div>
-                  <label for="inputText" class="col-sm-4 col-form-label">date rapport</label>
+                  <label for="inputText" class="col-sm-4 col-form-label">dadte rapport</label>
                   <div class="col-sm-10">
                       {{form_widget(f.date_rapport,{'attr':{'class':'form-control'}})}} 
                 </div>
                               <div style="color:red">   {{ form_errors(f.date_rapport,{'attr':{'class':'text-danger'}}) }} </div>
-
+</div>
                   <label for="inputText" class="col-sm-8 col-form-label">Num serie voiture</label>
                   <div class="col-sm-10">
                       {{form_widget(f.num_serievoiture,{'attr':{'class':'form-control'}})}} 
@@ -62,10 +61,9 @@
                  
                  <label for="inputNumber" class="col-sm-8 col-form-label">photo accident</label>
                   <div class="col-sm-10">
-  {{form_widget(f.photo_accident,{'attr':{'class':'form-control'}})}}  
+  {{form_widget(f.file,{'attr':{'class':'form-control'}})}}  
 
                   </div>
-                     <div style="color:red">   {{ form_errors(f.photo_accident,{'attr':{'class':'text-danger'}}) }}  </div>
 
                   <label for="inputText" class="col-sm-6 col-form-label">montant exprime</label>
                   <div class="col-sm-10">
@@ -74,7 +72,7 @@
                             <div style="color:red">   {{ form_errors(f.montant_exprime,{'attr':{'class':'text-danger'}}) }} </div>
 
                 
-                  <label for="inputPassword" class="col-sm-4 col-form-label">conclusions</label>
+                  <label for="inputPassword" class="col-sm-4 col-form-label">conclssusions</label>
                   <div class="col-sm-10">
                                       
 
@@ -83,11 +81,7 @@
                 </div>
                                        <div style="color:red">            {{ form_errors(f.conclusions,{'attr':{'class':'text-danger'}}) }} </div>
 
-                  <label for="inputText" class="col-sm-4 col-form-label">etat rapport</label>
-                  <div class="col-sm-10">
-                      {{form_widget(f.etat_rapport,{'attr':{'class':'form-control'}})}} 
-                 </div>
-                                      <div style="color:red">             {{ form_errors(f.etat_rapport,{'attr':{'class':'text-danger'}}) }} </div>
+                
 
                   <label for="inputText" class="col-sm-4 col-form-label">id expert</label>
                   <div class="col-sm-10">
