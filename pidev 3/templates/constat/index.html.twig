@@ -1,0 +1,42 @@
+{% extends 'basebackconstat.html.twig' %}
+{% block title %}
+<title>Gestion des Constats</title>
+{% endblock %}
+{% block list %}
+    <h1>Liste des Constats</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Dateaccident</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Dateconstat</th>
+                <th scope="col">Imageaccident</th>
+                <th scope="col">Etat</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for constat in constats %}
+            <tr>
+                <td>{{ constat.id }}</td>
+                <td>{{ constat.dateaccident ? constat.dateaccident|date('Y-m-d') : '' }}</td>
+                <td>{{ constat.lieu }}</td>
+                <td>{{ constat.dateconstat ? constat.dateconstat|date('Y-m-d') : '' }}</td>
+                <td>{{ constat.imageaccident }}</td>
+                <td>{{ constat.etat }}</td>
+                <td>
+                    <a href="{{ path('app_constat_show', {'id': constat.id}) }}">details</a>
+                    <a href="{{ path('app_constat_edit', {'id': constat.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun Constat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
