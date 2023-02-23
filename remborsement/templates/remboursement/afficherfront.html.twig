@@ -26,7 +26,7 @@ left: 200px;
   margin-bottom:15px;
 }
 .ed_element_wrapper_form .form-group .form-control{
-  border:1px solid #ccc;
+  border:1px solid #white;
   height:40px;
   padding:15px;
   width:100%;
@@ -43,86 +43,97 @@ left: 200px;
 }
 .ed_element_wrapper_form .form_inline .form-group{
     width:calc(50% - 10px);
-    float:left;
-}
-.ed_element_wrapper_form .form_inline .form-group:nth-child(2n + 1){
     float:right;
+
 }
+.ed_element_wrapper_form .form_inline .form-control{
+    width:calc(50% +20px);
+    float:left;
+
+}
+.btn-primary {
+ 
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    position: relative;
+left: 60px;
+     }
 
 /* inline form end */
 </style>
       
        
-              <h5 class="card-title"  style= "display: flex; align-items: center; justify-content: center;">RAPPORT</h5>
+              <h1  style= "position:relative;left:620px;top:50px;color:black;">RAPPORT</h1>
    
               <!-- General Form Elements -->
 {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}            
                <div class="ed_element_wrapper_form">
     <form class="pc_input_form">
       <div class="form_input_app_div form_inline">
-      <div class="form-group pc_input_section">
-               <h5>   <label for="" class="col-sm-6 col-form-label"style="color:white;">date rapport</label></h5>
-                
-                 <div class="col-sm-10">
-                      {{form_widget(f.date_rapport,{'attr':{'class':''}})}} 
-                      
-                       </div>
-                <div style="color:red">   {{ form_errors(f.date_rapport,{'attr':{'class':'text-danger'}}) }} </div>
-                </div>
+    
                              
  <div class="form-group pc_input_section">
               <h5>    <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">Num serie voiture</label></h5>
                     <div class="col-sm-10">
                       {{form_widget(f.num_serievoiture,{'attr':{'class':'form-control'}})}} 
+                                                                   <div style="color:red"> {{ form_errors(f.num_serievoiture,{'attr':{'class':'text-danger'}}) }}</div>
+
                  </div>
-                                             <div style="color:red"> {{ form_errors(f.num_serievoiture,{'attr':{'class':'text-danger'}}) }}</div>
 </div> 
 <div class="form-group pc_input_section">
             <h5>      <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">modele voiture</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.modele_voiture,{'attr':{'class':'form-control'}})}} 
+                                                                  <div style="color:red">       {{ form_errors(f.modele_voiture,{'attr':{'class':'text-danger'}}) }} </div>
+
                 </div>
-                                            <div style="color:red">       {{ form_errors(f.modele_voiture,{'attr':{'class':'text-danger'}}) }} </div>
 </div><div class="form-group pc_input_section">
                <h5>   <label for="inputText" class="col-sm-4 col-form-label"style="color:white;">matricule</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.matricule,{'attr':{'class':'form-control'}})}} 
+                                                        <div style="color:red">    {{ form_errors(f.matricule,{'attr':{'class':'text-danger'}}) }} </div>
+
                 </div>
-                                  <div style="color:red">    {{ form_errors(f.matricule,{'attr':{'class':'text-danger'}}) }} </div>
 </div><div class="form-group pc_input_section">
                <h5>   <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">couleur voiture</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.couleur_voiture,{'attr':{'class':'form-control'}})}} 
+                                                       <div style="color:red">  {{ form_errors(f.couleur_voiture,{'attr':{'class':'text-danger'}}) }} </div>
+
                 </div>
-                                 <div style="color:red">  {{ form_errors(f.couleur_voiture,{'attr':{'class':'text-danger'}}) }} </div>
-</div><div class="form-group pc_input_section">
+</div>
+<div class="form-group pc_input_section">
                 <h5>  <label for="" class="col-sm-8 col-form-label"style="color:white;">dateMiseEnCirculation</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.dateMiseEnCirculation,{'attr':{'class':''}})}} 
+                                                    <div style="color:red">  {{ form_errors(f.dateMiseEnCirculation,{'attr':{'class':'text-danger'}}) }} </div>
+
                 </div>
-                              <div style="color:red">  {{ form_errors(f.dateMiseEnCirculation,{'attr':{'class':'text-danger'}}) }} </div>
 </div>
 <div class="form-group pc_input_section">
                 <h5>  <label for="inputText" class="col-sm-4 col-form-label"style="color:white;">mandant</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.mandant,{'attr':{'class':'form-control'}})}} 
+                                               <div style="color:red">   {{ form_errors(f.mandant,{'attr':{'class':'text-danger'}}) }} </div>
+
                 </div>
-                         <div style="color:red">   {{ form_errors(f.mandant,{'attr':{'class':'text-danger'}}) }} </div>
 
                 </div>
  <div class="form-group pc_input_section">
                 <h5> <label for="" class="col-sm-8 col-form-label"style="color:white;">photo accident</label></h5>
                   <div class="col-sm-10">
-  {{form_widget(f.file,{'attr':{'class':''}})}}</div>
+  {{form_widget(f.file,{'attr':{'class':''}})}}
                      <div style="color:red">   {{ form_errors(f.file,{'attr':{'class':'text-danger'}}) }}  </div>
-
+</div>
 </div>
 <div class="form-group pc_input_section">
                <h5>   <label for="inputText" class="col-sm-6 col-form-label"style="color:white;">montant exprime</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.montant_exprime,{'attr':{'class':'form-control'}})}} 
+                                                  <div style="color:red">   {{ form_errors(f.montant_exprime,{'attr':{'class':'text-danger'}}) }} </div>
+
                 </div>
-                            <div style="color:red">   {{ form_errors(f.montant_exprime,{'attr':{'class':'text-danger'}}) }} </div>
 
                 </div>
                 <div class="form-group pc_input_section">
@@ -131,22 +142,24 @@ left: 200px;
                                       
 
                    {{form_widget(f.conclusions,{'attr':{'class':'form-control'}})}}  
-                   
+                                                          <div style="color:red">            {{ form_errors(f.conclusions,{'attr':{'class':'text-danger'}}) }} </div>
+
                 </div>
-                                       <div style="color:red">            {{ form_errors(f.conclusions,{'attr':{'class':'text-danger'}}) }} </div>
 
                  </div>
                  <div class="form-group pc_input_section">
-                <h4>  <label for="inputText" class="col-sm-4 col-form-label"style="color:white;">id expert</label></h4>
+                <h5>  <label for="inputText" class="col-sm-4 col-form-label"style="color:white;">id expert</label></h5>
                   <div class="col-sm-10">
                       {{form_widget(f.id_expert,{'attr':{'class':'form-control'}})}} 
+                                                <div style="color:red">             {{ form_errors(f.id_expert,{'attr':{'class':'text-danger'}}) }} </div>
+
                  </div>
-                          <div style="color:red">             {{ form_errors(f.id_expert,{'attr':{'class':'text-danger'}}) }} </div>
 </div>
-                  <div class="col-sm-10"  style="display: flex;align-items: center;justify-content: center; margin-top:20px;">
-                 {{form_widget(f.ajouter,{'attr':{'class':"btn btn-primary"}})}} 
-                  </div>
-             
+                  <div class="col-sm-10" style="display: flex; align-items: center; justify-content: center; margin-top:20px;">
+    {{ form_widget(f.ajouter, {'attr': {'class': 'btn btn-primary'}, 'label': '<img src="'~asset('assets/img/ajouterr.png')~'"background-color: transparent height="75" width="75 position:relative left:300px">', 'label_html': true }) }}
+</div>
+
+       
 
              
 

@@ -23,7 +23,7 @@ class RapportType extends AbstractType
         $builder
             
           
-            ->add('date_rapport')
+           
             ->add('num_serievoiture')
             ->add('modele_voiture')
             ->add('matricule')

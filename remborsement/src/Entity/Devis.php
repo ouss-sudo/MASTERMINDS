@@ -19,10 +19,32 @@ class Devis
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    #[Assert\Regex(
+        pattern: '/^[0-9]*$/',
+        message: ' Le montant_min doit être composé de chiffres uniquement.'
+    )]
+    /**
+     * @Assert\NotBlank(message=" montant_min doit etre non vide")
+     * 
+     *     
+     *
+     *     
+     * 
+     */  
     #[ORM\Column]
     private ?float $montant_min = null;
-
+    #[Assert\Regex(
+        pattern: '/^[0-9]*$/',
+        message: ' Le montant_max doit être composé de chiffres uniquement.'
+    )]
+    /**
+     * @Assert\NotBlank(message=" montant_max doit etre non vide")
+     * 
+     *     
+     *
+     *     
+     * 
+     */  
     #[ORM\Column]
     private ?float $montant_max = null;
 

@@ -38,6 +38,8 @@ class RemboursementController extends AbstractController
     public function addrapportfront(Request $request): Response
     {
        $rapport= new rapport() ;
+       $rapport->setDateRapport(new \DateTime());
+
        $form=$this->createForm(RapportType::class,$rapport)  ;
        $form->handleRequest($request);
        if ($form->isSubmitted() && $form->isValid())

@@ -32,45 +32,31 @@ class Rapport
      */
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_rapport = null;
-       /**
-     * @Assert\NotBlank(message=" NUM serie de voiture doit etre non vide")
-     * @Assert\Length(
-     *      min = 5,
-     *      minMessage=" Entrer un titre au mini de 5 caracteres"
-     *
-     *     )
-     * 
-     */
     #[ORM\Column(length: 20)]
-    private ?string $num_serievoiture = null;
-  /**
-     * @Assert\NotBlank(message=" modele voiture doit etre non vide")
+    #[Assert\Regex(
+        pattern: '/^([0-9]*TUN[0-9]*)$/',
+        message: ' doit contenir seulement des numbres et le mot "TUN"'
+    )]
+    /**
+     * @Assert\NotBlank(message=" num serieVoiture doit etre non vide")
      * 
      *     
      *
      *     
      * 
      */
+    private ?string $num_serievoiture = null;
+/**
+ * @Assert\NotBlank(message="Le modèle de la voiture est obligatoire")
+ 
+ * @Assert\Length(
+ *     min=2,
+ *     minMessage="Le modèle de la voiture doit contenir au moins {{ limit }} caractères"
+ * )*/
     #[ORM\Column(length: 30)]
     private ?string $modele_voiture = null;
-/**
-     * @Assert\NotBlank(message=" modele voiture doit etre non vide")
-     * @Assert\Length(
-     *       min = 5,
-     *      minMessage=" Entrer un matricule au mini de 5 caracteres"
-     *
-     *     )
-     * 
-     */
-    #[ORM\Column(length: 30)]
-    private ?string $matricule = null;
-/**
-     * @Assert\NotBlank(message=" coleur voiture doit etre non vide")
-     
-     */
-    #[ORM\Column(length: 30)]
-    private ?string $couleur_voiture = null;
-/**
+  
+   /**
      * @Assert\NotBlank(message=" date doit etre non vide")
      * 
      *       
@@ -80,13 +66,34 @@ class Rapport
      */
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateMiseEnCirculation = null;
-/**
-     * @Assert\NotBlank(message=" mandant doit etre non vide")
-     * 
-     * 
-     */
     #[ORM\Column(length: 40)]
-    private ?string $mandant = null;
+    #[Assert\Regex(
+        pattern: '/^([0-9]*TUN[0-9]*)$/',
+        message: ' doit contenir seulement des numbres et le mot "TUN"'
+
+    )]
+    private ?string $matricule = null;
+/**
+     * @Assert\NotBlank(message=" coleur voiture doit etre non vide")
+     
+     */
+    #[ORM\Column(length: 30)]
+    private ?string $couleur_voiture = null;
+
+    #[ORM\Column(length: 30)]
+    #[Assert\Regex(
+      pattern: '/^[0-9]*$/',
+      message: ' Le mandant doit être composé de chiffres uniquement.'
+  )]
+  /**
+   * @Assert\NotBlank(message=" num serieVoiture doit etre non vide")
+   * 
+   *     
+   *
+   *     
+   * 
+   */  
+      private ?string $mandant = null;
 
 /**
      * @Assert\NotBlank(message=" conclusions doit etre non vide")
@@ -95,11 +102,18 @@ class Rapport
      */
     #[ORM\Column(length: 255)]
     private ?string $conclusions = null;
-/**
-     * @Assert\NotBlank(message=" montant_exprime doit etre non vide")
+    #[Assert\Regex(
+        pattern: '/^[0-9]*$/',
+        message: ' Le montant_exprime doit être composé de chiffres uniquement.'
+    )]
+    /**
+     * @Assert\NotBlank(message=" num serieVoiture doit etre non vide")
      * 
+     *     
+     *
+     *     
      * 
-     */
+     */  
     #[ORM\Column]
     private ?float $montant_exprime = null;
 
