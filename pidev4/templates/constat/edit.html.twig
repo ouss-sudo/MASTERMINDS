@@ -1,0 +1,11 @@
+{% extends 'basebackconstat.html.twig' %}
+{% block title %}
+    <title>Gestion des Constats</title>
+{% endblock %}
+{% block list %}
+    <h1>Modifier Constat</h1>
+
+    {{ include('constat/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <a href="{{ path('app_constat_show',{'id':constat.id}) }}"><img src="{{ asset('assets/img/undo.png') }}" height="40" width="40"></a>
+
+{% endblock %}

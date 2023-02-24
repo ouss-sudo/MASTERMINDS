@@ -1,0 +1,9 @@
+{% extends 'basefrontconstat.html.twig' %}
+{% block formadd %}
+    <h1>Modifier les informations de la véhicule</h1>
+    {{ include('vehicule/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_constat_showfront',{'id':vehicule.constat.id}) }}"><img src="{{ asset('assets/img/undo.png') }}" height="30" width="30"></a>
+
+    {{ include('vehicule/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'basefrontconstat.html.twig' %}
+{% block formadd %}
+    <h1>Ajouter la deuxième véhicule</h1>
+
+    {{ include('vehicule/_form.html.twig') }}
+    <a href="{{ path('app_constat_show',{'id':vehicule.constat.id}) }}"></a>
+
+{% endblock %}
