@@ -1,0 +1,74 @@
+{% extends 'basebackconstat.html.twig' %}
+{% block title %}
+    <title>Gestion des Constats</title>
+{% endblock %}
+
+{% block list %}
+    <h1>Constat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ constat.id }}</td>
+            </tr>
+            <tr>
+                <th>Dateaccident</th>
+                <td>{{ constat.dateaccident ? constat.dateaccident|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ constat.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Dateconstat</th>
+                <td>{{ constat.dateconstat ? constat.dateconstat|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Imageaccident</th>
+                <td><img src="{{vich_uploader_asset(constat,'imageFile') }}" width="200" height="200"></td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ constat.etat }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Les véhicules</th>
+            </tr>
+            <tr>
+                <th scope="col">Identifiant</th>
+                <th scope="col">Num contrat</th>
+                <th scope="col">Nom agence</th>
+                <th scope="col">Nom conducteur</th>
+                <th scope="col">Prenom conducteur</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Immatriculation</th>
+            </tr>
+                {% for vehicule in vehicules %}
+            <tr>
+
+                <td>{{ vehicule.id }}</td>
+                <td>{{ vehicule.numContrat }}</td>
+                <td>{{ vehicule.nomagence }}</td>
+                <td>{{ vehicule.nomconducteur }}</td>
+                <td>{{ vehicule.prenomconducteur }}</td>
+                <td>{{ vehicule.adresse }}</td>
+                <td>{{ vehicule.immatriculation }}</td>
+
+            </tr>
+            {% else %}
+
+                <tr>
+                    <th>Aucune véhicule ajoutée</th>
+
+                </tr>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <td>  <a href="{{ path('app_constat_edit', {'id': constat.id}) }}"><img src="{{ asset('assets/img/refresh.png') }}" height="30" width="30"></a></td></td>
+    <td>  <a href="{{ path('app_constat_index', {'id': constat.id}) }}"><img src="{{ asset('assets/img/undo.png') }}" height="30" width="30"></a></td></td>
+
+    {{ include('constat/_delete_form.html.twig') }}
+{% endblock %}

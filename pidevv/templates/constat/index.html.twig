@@ -1,0 +1,54 @@
+{% extends 'basebackconstat.html.twig' %}
+{% block title %}
+<title>Gestion des Constats</title>
+{% endblock %}
+{% block list %}
+    <h1>Liste des Constats</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Dateaccident</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Dateconstat</th>
+                <th scope="col">Imageaccident</th>
+                <th scope="col">Etat</th>
+                <th scope="col">actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for constat in constats %}
+            <tr>
+                <td>{{ constat.id }}</td>
+                <td>{{ constat.dateaccident ? constat.dateaccident|date('Y-m-d') : '' }}</td>
+                <td>{{ constat.lieu }}</td>
+                <td>{{ constat.dateconstat ? constat.dateconstat|date('Y-m-d') : '' }}</td>
+                <td><img src="{{vich_uploader_asset(constat,'imageFile') }}" width="80" height="80"></td>{# image display #}
+                {% if constat.etat=='Traitée'  %}
+                    <td><img src="{{ asset('assets/img/check.png') }}" height="40" width="40"></td>
+                {% elseif constat.etat=='En cours de traitement' %}
+                    <td><img src="{{ asset('assets/img/travail-en-cours.png') }}" height="40" width="40"></td>
+                {% else %}
+                    <td><img src="{{ asset('assets/img/attention.png') }}" height="40" width="40"></td>
+                {% endif %}
+
+                <td>
+                    <a href="{{ path('app_constat_show', {'id': constat.id}) }}"><img src="{{ asset('assets/img/detail.png') }}" height="30" width="30"></a>
+                    {% if constat.etat=='Traitée'  %}
+                        <a href="{{ path('app_constat_edit', {'id': constat.id}) }}" onclick="return false;"><img src="{{ asset('assets/img/refresh.png') }}" height="30" width="30"></a>
+                    {% else %}
+                        <a href="{{ path('app_constat_edit', {'id': constat.id}) }}"><img src="{{ asset('assets/img/refresh.png') }}" height="30" width="30"></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun Constat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

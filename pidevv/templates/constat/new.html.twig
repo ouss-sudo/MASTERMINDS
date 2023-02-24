@@ -1,0 +1,115 @@
+{% extends 'basefrontconstat.html.twig' %}
+{% block header %}
+    <section class="w3l-bootstrap-header">
+        <nav class="navbar navbar-expand-lg navbar-light py-lg-2 py-2">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><!-- <span class="fa fa-gg">--></span> AssurTout</a>
+                <!-- if logo is image enable this
+              <a class="navbar-brand" href="#index.html">
+                  <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+              </a> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa fa-bars"></span>
+                </button>
+
+                <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">Services</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_reclamation_new') }}">Contact</a>
+                        </li>
+
+                    </ul>
+                    <!--search-->
+                    <form action="search-results.html" class="form-inline position-relative my-2 my-lg-0">
+                        <input class="form-control search" type="search" placeholder="Search here..." aria-label="Search" required="">
+                        <button class="btn btn-search position-absolute" type="submit"><span class="fa fa-search" aria-hidden="true"></span></button>
+                    </form>
+                    <nav class="header-nav ms-auto">
+                        <ul class="d-flex align-items-center">
+                            <li class="nav-item dropdown pe-3">
+
+                                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                                    <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
+                                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                                </a><!-- End Profile Iamge Icon -->
+
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                    <li class="dropdown-header">
+                                        <h6>Kevin Anderson</h6>
+                                        <span>Web Designer</span>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html.twig">
+                                            <i class="bi bi-person"></i>
+                                            <span>Mon profil</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html.twig">
+                                            <i class="bi bi-gear"></i>
+                                            <span>Account Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ path('app_reclamation_indexfront') }}">
+                                            <i class="bi bi-question-circle"></i>
+                                            <span>Mes réclamations</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ path('app_reclamation_indexfront') }}">
+                                            <i class="bi bi-question-circle"></i>
+                                            <span>Mes constats</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                            <span>Sign Out</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <!-- End Profile Dropdown Items -->
+                            </li>
+                        </ul>
+                    </nav><!-- End Profile Nav -->
+                    <!--end search-->
+            </div>
+            </div>
+        </nav>
+    </section>
+{% endblock %}
+{% block formadd %}
+    <h1>Ajouter un constat</h1>
+
+    {{ include('constat/form2.html.twig') }}
+{% endblock %}

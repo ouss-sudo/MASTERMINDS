@@ -1,0 +1,55 @@
+{% extends 'basebackreclamation.html.twig' %}
+{% block title %}
+    <title>Gestion des Réclamation</title>
+{% endblock %}
+{% block list %}
+    <h1>Liste des réclamation</h1>
+
+
+    <table class="table datatable">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Objet</th>
+                <th scope="col">Description</th>
+                <th scope="col">DateReclamation</th>
+                <th scope="col">DateTraitement</th>
+                <th scope="col">Etat</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.objet }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.dateReclamation ? reclamation.dateReclamation|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.dateTraitement ? reclamation.dateTraitement|date('Y-m-d') : '' }}</td>
+                {% if reclamation.etat=='Traitée'  %}
+                    <td><img src="{{ asset('assets/img/check.png') }}" height="40" width="40"></td>
+                {% elseif reclamation.etat=='En attente' %}
+                    <td><img src="{{ asset('assets/img/wait.png') }}" height="40" width="40"></td>
+                {% else %}
+                    <td><img src="{{ asset('assets/img/loading.png') }}" height="40" width="40"></td>
+                {% endif %}
+                <td>
+                    <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}"><img src="{{ asset('assets/img/detail.png') }}" height="30" width="30"></a>
+                    {% if reclamation.etat=='Traitée'  %}
+                        <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}" onclick="return false;"><img src="{{ asset('assets/img/refresh.png') }}" height="30" width="30"></a>
+                    {% else %}
+                        <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}"><img src="{{ asset('assets/img/refresh.png') }}" height="30" width="30"></a>
+                    {% endif %}
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune réclamation</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
