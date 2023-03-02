@@ -25,7 +25,8 @@ class Devis
     )]
     /**
      * @Assert\NotBlank(message=" montant_min doit etre non vide")
-     * 
+       * @Assert\GreaterThan(value=0, message="Le montant doit être supérieur à zéro.")
+
      *     
      *
      *     
@@ -39,7 +40,8 @@ class Devis
     )]
     /**
      * @Assert\NotBlank(message=" montant_max doit etre non vide")
-     * 
+       * @Assert\GreaterThan(value=0, message="Le montant doit être supérieur à zéro.")
+
      *     
      *
      *     

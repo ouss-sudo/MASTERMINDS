@@ -33,10 +33,7 @@ class Rapport
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_rapport = null;
     #[ORM\Column(length: 20)]
-    #[Assert\Regex(
-        pattern: '/^([0-9]*TUN[0-9]*)$/',
-        message: ' doit contenir seulement des numbres et le mot "TUN"'
-    )]
+    
     /**
      * @Assert\NotBlank(message=" num serieVoiture doit etre non vide")
      * 
@@ -51,7 +48,7 @@ class Rapport
  
  * @Assert\Length(
  *     min=2,
- *     minMessage="Le modèle de la voiture doit contenir au moins {{ limit }} caractères"
+ *     minMessage="doit contenir au moins{{ limit }}caractères"
  * )*/
     #[ORM\Column(length: 30)]
     private ?string $modele_voiture = null;
@@ -66,10 +63,18 @@ class Rapport
      */
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateMiseEnCirculation = null;
+    /**
+     * @Assert\NotBlank(message=" num serieVoiture doit etre non vide")
+     * 
+     *     
+     *
+     *     
+     * 
+     */
     #[ORM\Column(length: 40)]
     #[Assert\Regex(
         pattern: '/^([0-9]*TUN[0-9]*)$/',
-        message: ' doit contenir seulement des numbres et le mot "TUN"'
+        message: 'doit contenir seulement  numbres et TUN'
 
     )]
     private ?string $matricule = null;
@@ -86,9 +91,10 @@ class Rapport
       message: ' Le mandant doit être composé de chiffres uniquement.'
   )]
   /**
-   * @Assert\NotBlank(message=" num serieVoiture doit etre non vide")
+   * @Assert\NotBlank(message=" mondant doit etre non vide")
    * 
-   *     
+  * @Assert\GreaterThan(value=0, message="Le montant doit être supérieur à zéro.")
+   
    *
    *     
    * 
@@ -107,9 +113,10 @@ class Rapport
         message: ' Le montant_exprime doit être composé de chiffres uniquement.'
     )]
     /**
-     * @Assert\NotBlank(message=" num serieVoiture doit etre non vide")
+     * @Assert\NotBlank(message=" montant_exprime doit etre non vide")
      * 
-     *     
+         * @Assert\GreaterThan(value=0, message="Le montant doit être supérieur à zéro.")
+
      *
      *     
      * 

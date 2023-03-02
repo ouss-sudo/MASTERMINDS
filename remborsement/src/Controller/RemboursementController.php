@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\RapportType;
 use App\Form\UpdateType;
 use App\Repository\RapportRepository ; 
+use Dompdf\Options  ;
+use Dompdf\Dompdf ;
 class RemboursementController extends AbstractController
 {
     #[Route('/basefront', name: 'basefront')]
@@ -144,4 +146,45 @@ $form->handleRequest($request);
        }
             return $this->render('remboursement/updaterapport.html.twig',['f'=>$form->createView()]); 
     }
+   /* #[Route('/pdf/{id}', name: 'users_data')]
+    public function pdf(): Response
+    {
+      
+        $rapports = $this->getDoctrine()->getManager()->getRepository(Rapport::class)->findAll() ; 
+        return $this->render('remboursement/pdf.html.twig', ['b'=>$rapports]);
+    }*/
+    #[Route('/download', name: 'users_dataa')]
+    public function Downloadpdf(Request $request)
+    {
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+    
+        $dompdf = new Dompdf($pdfOptions);
+        $context = stream_context_create([
+            'ssl' => [
+                'verifier_peer' => FALSE,
+                'verifier_peer_name' => FALSE,
+                'allow_self_signed' => TRUE
+            ]
+        ]);
+        $dompdf->setHttpContext($context);
+    
+        $entityManager = $this->getDoctrine()->getManager();
+        $rapport = $entityManager->getRepository(Rapport::class)->find($request->query->get('id'));
+      
+    
+        $html = $this->renderView('remboursement/pdf.html.twig', ['b' => [$rapport]]);
+        $dompdf->loadHtml($html);
+    
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+    
+        $fichier = 'user-data-' . $request->query->get('id') . '.pdf';
+        ob_end_clean();
+        $dompdf->stream($fichier, ['Attachment' => true]);
+        return new Response();
+    }
+    
+
 }

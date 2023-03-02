@@ -98,6 +98,12 @@
 <td class="hidden-column">
  <a class="btn btn-danger"href="{{ path('supprimerrapport',{'id':rapport.getId()})}}"onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette Rapport ?')"><img src="{{ asset('assets/img/delete.png') }}" height="30" width="30"></a>
 </td>
+<td class="hidden-column">
+ <a class="btn btn-danger"><form action="{{ path('users_dataa') }}" method="get">
+    <input type="hidden" name="id" value="{{ rapport.getId() }}">
+    <button type="submit" class="btn btn-danger">Télécharger</button>
+</form> </a>
+</td>
 </tr>
 {% endfor %}
                   
