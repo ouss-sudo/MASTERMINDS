@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+# routes.yaml
+constat_pdf:
+  path: '/{id}/pdf'
+  controller: 'App\Controller\ConstatController::pdf'

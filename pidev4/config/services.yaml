@@ -6,7 +6,18 @@
 parameters:
     app.path.product_images: /uploads/constat
     app.debug: true
+    twilio_sid: <AC6bcc0a3decff237a4fea743cf6909a88>
+    twilio_token: <37ac977c004c1cc9b6c18b3b2d87d4b9>
+    twilio_number: <+12762901120>
+
+
 services:
+    twilio.client:
+        class: Twilio\Rest\Client
+        arguments: [ '%twilio_sid%', '%twilio_token%' ]
+
+    # Ajoute un alias pour le service twilio.client
+    Twilio\Rest\Client: '@twilio.client'
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

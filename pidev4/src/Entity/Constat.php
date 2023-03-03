@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: ConstatRepository::class)]
 #[Vich\Uploadable]
 class Constat
@@ -18,22 +19,26 @@ class Constat
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("constats:read")]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Assert\NotBlank(message:"Date obligatoire")]
     #[Assert\LessThanOrEqual("today")] //l'annotation Assert\NotBlank pour  s'assurer qu'un champs dans un formulaire n'est pas vide
+    #[Groups("constats:read")]
     private ?\DateTime $dateaccident = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     #[Assert\NotBlank(message:"Veuillez saisir le lieu de l'accident")]
+    #[Groups("constats:read")]
     private ?string $lieu = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-
+    #[Groups("constats:read")]
     private ?\DateTime $dateconstat = null;
 
     #[ORM\Column(length: 2000, nullable: true)]
+    #[Groups("constats:read")]
     private ?string $imageaccident = null;
 
     #[Vich\UploadableField(mapping:"product_images", fileNameProperty:"imageaccident")]
@@ -43,6 +48,7 @@ class Constat
      */
     private $imageFile;
     #[ORM\Column(length: 50, nullable: true)]
+    #[Groups("constats:read")]
     private ?string $etat = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -59,6 +65,12 @@ class Constat
 
     #[ORM\OneToMany(mappedBy: 'constat', targetEntity: Vehicule::class)]
     private Collection $vehicules;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $latitude = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $longitude = null;
 
     public function __construct()
     {
@@ -220,6 +232,30 @@ class Constat
                 $vehicule->setConstat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }

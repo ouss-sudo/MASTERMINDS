@@ -38,7 +38,28 @@ class ConstatRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    public function countByDate(){
+        $query = $this->createQueryBuilder('constat');
+        $query
+            ->select('SUBSTRING(constat.dateconstat , 1 , 10) as date , COUNT(constat) as count')
+            ->groupBy('date')
+        ;
+        return $query->getQuery()->getResult();
+    }
+    public function findrecBylieu($lieu){
+        return $this->createQueryBuilder('c')
+            ->where('c.lieu LIKE :lieu')
+            ->setParameter('lieu', '%'.$lieu.'%')
+            ->getQuery()
+            ->getResult();
+    }
+    public  function  triedecroissant()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.dateconstat','ASC')
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Constat[] Returns an array of Constat objects
 //     */
