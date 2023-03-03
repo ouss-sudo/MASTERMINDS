@@ -1,0 +1,9 @@
+{% extends 'basebackreclamation.html.twig' %}
+{% block list %}
+    <h1>Modifier Reclamation</h1>
+
+    {{ include('reclamation/_form.html.twig', {'button_label': 'Modifier et envoyer une réponse'}) }}
+
+    <a href="{{ path('app_reponse_new',{'id': reclamation.id}) }}"><img src="{{ asset('assets/img/undo.png') }}" height="30" width="30"></a>
+
+{% endblock %}
