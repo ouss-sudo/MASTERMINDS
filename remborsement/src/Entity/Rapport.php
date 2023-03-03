@@ -13,7 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Endroid\QrCode\QrCode;
+use BaconQrCode\Renderer\Image\Png;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 #[ORM\Entity(repositoryClass: RapportRepository::class)]
 class Rapport
 {
@@ -333,6 +337,6 @@ class Rapport
 
         return $this;
     }
-
+  
     
 }

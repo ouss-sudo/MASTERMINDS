@@ -15,6 +15,13 @@ use App\Form\UpdateType;
 use App\Repository\RapportRepository ; 
 use Dompdf\Options  ;
 use Dompdf\Dompdf ;
+use BaconQrCode\Writer;
+use Endroid\QrCode\QrCode;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use BaconQrCode\Renderer\Image\Png;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\LabelAlignment;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\BarChart;
 class RemboursementController extends AbstractController
 {
     #[Route('/basefront', name: 'basefront')]
@@ -185,6 +192,63 @@ $form->handleRequest($request);
         $dompdf->stream($fichier, ['Attachment' => true]);
         return new Response();
     }
+    #[Route('/downloadQrcode', name: 'download_qrcode')]
+
+    
+    public function downloadQRCode(Request $request)
+    {
+        $rapport = $this->getDoctrine()->getRepository(Rapport::class)->find($request->query->get('id'));
+        
+        // Generate QR code
+        $qrCode = new QrCode($rapport->getId());
+        $qrCode->setSize(400);
+        $qrCode->setMargin(10);
+        $imageData = $qrCode->writeS();
+        
+        // Return image data in response
+        $response = new Response($imageData);
+        $response->headers->set('Content-Type', 'image/png');
+        $response->headers->set('Content-Disposition', 'attachment; filename="qrcode.png"');
+        
+        return $response;
+    }
+    #[Route('/stats',name:'searchremb')]
+    public function rembParDateAction(RapportRepository $repository)
+    {
+        $rapports = $repository->findAll();
+        $data = [];
+        foreach ($rapports as $rapport) {
+            $date = $rapport->getDateRapport()->format('Y-m-d');
+            if (!array_key_exists($date, $data)) {
+                $data[$date] = 0;
+            }
+            $data[$date]++;
+        }
+        // Créer un nouveau LineChart
+        $chart = new BarChart();
+
+        // Ajouter les données des constats au chart
+        $chart->getData()->setArrayToDataTable([
+            ['Date','Nombre de remboursements'],
+            ...array_map(function ($date, $count) {
+                return [$date, $count];
+            }, array_keys($data), array_values($data)),
+        ]);
+
+        // Configurer le chart avec des options
+        $chart->getOptions()->setTitle('Nombe de remboursement par jour');
+        $chart->getOptions()->getHAxis()->setTitle('Date');
+        $chart->getOptions()->getVAxis()->setTitle('Nombre de remboursement');
+
+        // Rendre la vue contenant le chart
+        return $this->render('remboursement/stats.html.twig', [
+            'chart' => $chart
+        ]);
+    }
+}    
+    
+    
+    
+    
     
 
-}

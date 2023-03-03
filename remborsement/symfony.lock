@@ -1,4 +1,7 @@
 {
+    "cmen/google-charts-bundle": {
+        "version": "5.0.1"
+    },
     "doctrine/annotations": {
         "version": "1.14",
         "recipe": {
@@ -37,6 +40,12 @@
             "./config/packages/doctrine_migrations.yaml",
             "./migrations/.gitignore"
         ]
+    },
+    "endroid/qr-code-bundle": {
+        "version": "4.3.1"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.4.0"
     },
     "phpunit/phpunit": {
         "version": "9.6",

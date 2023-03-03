@@ -38,7 +38,14 @@ class RapportRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    public function findrecBylieu($id)
+{
+    return $this->createQueryBuilder('c')
+        ->where('c.id LIKE :id')
+        ->setParameter('id', '%'.$id.'%')
+        ->getQuery()
+        ->getResult();
+}
 //    /**
 //     * @return Rapport[] Returns an array of Rapport objects
 //     */

@@ -2,7 +2,7 @@
 
 
 {% block body %}
-
+<tbody id="all">
           <a href="{{ path('addrapportfront') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 80px; position:relative ; top:100px;left:1300px"></i></a>
 
 <div class="row">
@@ -101,9 +101,23 @@
 <td class="hidden-column">
  <a class="btn btn-danger"><form action="{{ path('users_dataa') }}" method="get">
     <input type="hidden" name="id" value="{{ rapport.getId() }}">
-    <button type="submit" class="btn btn-danger">Télécharger</button>
+    <button type="submit" class="btn btn-danger">Télécharger pdf</button>
 </form> </a>
 </td>
+<td class="hidden-column">
+<!-- bouton de téléchargement -->
+
+
+    
+    </td>
+    <td>
+<!-- bouton de téléchargement -->
+<a href="{{ path('download_qrcode', {id: rapport.id}) }}" class="btn btn-primary">Télécharger QR code</a>
+
+<!-- balise img pour afficher le QR code -->
+
+
+    </td>
 </tr>
 {% endfor %}
                   
@@ -116,4 +130,45 @@
 
  </div>
 </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('searchremb') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'search' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            $.each(JSON.parse(retour), function(i, obj) {
+                                $('#t tbody#all').hide();
+
+                                $('#t tbody#search').append('<tr><td> '+obj.id+'</td><td>'+obj.getDateRapport+'</td><td>'+obj.getNumSerievoiture()+'</td><td>'+obj.dateconstat+'</td><td>'+obj.imageaccident+'</td><td>'+obj.etat+'</td><td><a href="/constat/'+obj.id+'/edit">Modifier</a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
 {% endblock %}
