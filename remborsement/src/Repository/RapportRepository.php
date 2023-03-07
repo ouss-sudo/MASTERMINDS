@@ -38,36 +38,14 @@ class RapportRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findrecBylieu($id)
-{
-    return $this->createQueryBuilder('c')
-        ->where('c.id LIKE :id')
-        ->setParameter('id', '%'.$id.'%')
-        ->getQuery()
-        ->getResult();
-}
-//    /**
-//     * @return Rapport[] Returns an array of Rapport objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByContract($rapport)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.rapport = :id')
+            ->setParameter('id', array($rapport))
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-//    public function findOneBySomeField($value): ?Rapport
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

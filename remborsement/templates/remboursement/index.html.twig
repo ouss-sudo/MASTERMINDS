@@ -5,6 +5,10 @@
 <tbody id="all">
           <a href="{{ path('addrapportfront') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 80px; position:relative ; top:100px;left:1300px"></i></a>
 
+ <a class="btn btn-danger"><form action="{{ path('users_data_excel') }}" method="get">
+    <i class="ri-arrow-left-circle-fill" style=" position:relative ; top:160px;left:750%"><button type="submit" class="btn btn-danger">Télécharger excel</button></i>
+</form> </a>
+
 <div class="row">
  <div  style="display: flex;align-items: center;justify-content: center;margin-top: 40px; margin-left:400px;padding:5px; width:1000px;">
             
@@ -104,15 +108,16 @@
     <button type="submit" class="btn btn-danger">Télécharger pdf</button>
 </form> </a>
 </td>
+
 <td class="hidden-column">
 <!-- bouton de téléchargement -->
 
 
     
     </td>
-    <td>
+    <td class="hidden-column">
 <!-- bouton de téléchargement -->
-<a href="{{ path('download_qrcode', {id: rapport.id}) }}" class="btn btn-primary">Télécharger QR code</a>
+ <a href="{{ path('app_qr_codes', {'id': rapport.id}) }}" class="btn btn-danger">QrCode</a>
 
 <!-- balise img pour afficher le QR code -->
 
