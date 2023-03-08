@@ -54,18 +54,33 @@ Author URL: http://w3layouts.com
 
             <nav class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
-                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                            stock
+                        </a>
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="services.html">stock</a>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_reclamation_new') }}">Contact</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link" href="{{ path('app_constat_new') }}">
+                            sinistre
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link dropdown-toggle" href="/addrapport" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                            remborsement
+                        </a>
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/addrapport">rapport</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link" href="{{ path('app_reclamation_new') }}">
+                            Reclamation
+                        </a>
                     </li>
 
                 </ul>
@@ -118,9 +133,8 @@ Author URL: http://w3layouts.com
                                         <span>Mes réclamations</span>
                                     </a>
                                 </li>
-
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="{{ path('app_reclamation_indexfront') }}">
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ path('app_constat_indexfront') }}">
                                         <i class="bi bi-question-circle"></i>
                                         <span>Mes constats</span>
                                     </a>
@@ -258,7 +272,7 @@ Author URL: http://w3layouts.com
                                 Nulla mollis dapibus nunc, ut rhoncus
                                 turpis sodales quis. Integer sit amet mattis quam.</p>
                         </div>
-                        <a class="btn btn-secondary btn-theme2 mt-5" href="{{ path('app_reclamation_new') }}">Nous Contacter</a>
+                        <a class="btn btn-secondary btn-theme2 mt-5" href="#">Nous Contacter</a>
                     </div>
 
 

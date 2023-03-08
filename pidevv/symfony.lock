@@ -1,6 +1,9 @@
 {
+    "cmen/google-charts-bundle": {
+        "version": "5.0.1"
+    },
     "doctrine/annotations": {
-        "version": "1.14",
+        "version": "2.0",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -37,6 +40,12 @@
             "./config/packages/doctrine_migrations.yaml",
             "./migrations/.gitignore"
         ]
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.9.0"
+    },
+    "mercuryseries/flashy-bundle": {
+        "version": "v5.1.0"
     },
     "phpunit/phpunit": {
         "version": "9.6",
@@ -279,11 +288,14 @@
             "./config/packages/messenger.yaml"
         ]
     },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.13.0"
+    },
     "twig/extra-bundle": {
         "version": "v3.5.1"
     },
     "vich/uploader-bundle": {
-        "version": "2.0",
+        "version": "2.1",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",

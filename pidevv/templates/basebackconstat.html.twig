@@ -51,9 +51,9 @@
   </div><!-- End Logo -->
 
   <div class="search-bar">
-    <form class="search-form d-flex align-items-center" method="POST" action="#">
-      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    <form class="search-form d-flex align-items-center">
+      <input type="text" name="query" placeholder="Search" title="Rechercher par lieu..." id="search">
+
     </form>
   </div><!-- End Search Bar -->
 
@@ -272,13 +272,24 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="{{ path('app_stats_stats') }}">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>Acceuil</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ path('app_reclamation_index') }}">
+          <i class="bi bi-grid"></i>
+          <span>Reclamations</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ path('app_constat_index') }}">
+          <i class="bi bi-grid"></i>
+          <span>Constats</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -508,7 +519,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Liste Des Constats</h1>
+     {% block stats%} <h1>Liste Des Constats</h1>{% endblock %}
     </div><!-- End Page Title -->
 
     <section class="section">

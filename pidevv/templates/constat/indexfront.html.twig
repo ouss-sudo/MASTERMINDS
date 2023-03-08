@@ -22,7 +22,7 @@ Author URL: http://w3layouts.com
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
     <!-- Vendor CSS Files -->
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
@@ -53,18 +53,33 @@ Author URL: http://w3layouts.com
 
                 <nav class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="services.html">Services</a>
-                        </li>
+                        <li class="nav-item dropdown show">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                                stock
+                            </a>
+                            <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="services.html">stock</a>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_reclamation_new') }}">Contact</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown show">
+                            <a class="nav-link" href="{{ path('app_constat_new') }}">
+                                sinistre
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown show">
+                            <a class="nav-link dropdown-toggle" href="/addrapport" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                                remborsement
+                            </a>
+                            <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/addrapport">rapport</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown show">
+                            <a class="nav-link" href="{{ path('app_reclamation_new') }}">
+                                Reclamation
+                            </a>
                         </li>
 
                     </ul>
@@ -111,15 +126,15 @@ Author URL: http://w3layouts.com
                                         <hr class="dropdown-divider">
                                     </li>
 
+
                                     <li>
                                         <a class="dropdown-item d-flex align-items-center" href="{{ path('app_reclamation_indexfront') }}">
                                             <i class="bi bi-question-circle"></i>
                                             <span>Mes réclamations</span>
                                         </a>
                                     </li>
-
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="{{ path('app_reclamation_indexfront') }}">
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ path('app_constat_indexfront') }}">
                                             <i class="bi bi-question-circle"></i>
                                             <span>Mes constats</span>
                                         </a>
@@ -175,7 +190,7 @@ Author URL: http://w3layouts.com
                                         <div class="banner-info-bg mx-auto text-center">
                                             <h5>Sécurité, fiabilité, notre assurance automobile</h5>
                                             <p>Protégez votre avenir avec une assurance fiable et adaptée à vos besoins.</p>
-                                            <a class="btn btn-secondary btn-theme2 mt-5" href="{{ path('app_reclamation_new') }}">Nous Contactez</a>
+                                            <a class="btn btn-secondary btn-theme2 mt-5" href="#">Nous Contactez</a>
                                         </div>
                                     </div>
                                 </div>
@@ -204,40 +219,7 @@ Author URL: http://w3layouts.com
             </div>
 
 
-            <script src="{{asset('assetsfront/js/owl.carousel.js')}}"></script>
-            <!-- script for -->
-            <script>
-                $(document).ready(function () {
-                    $('.owl-one').owlCarousel({
-                        loop: true,
-                        margin: 0,
-                        nav: false,
-                        responsiveClass: true,
-                        autoplay: false,
-                        autoplayTimeout: 5000,
-                        autoplaySpeed: 1000,
-                        autoplayHoverPause: false,
-                        responsive: {
-                            0: {
-                                items: 1,
-                                nav: false
-                            },
-                            480: {
-                                items: 1,
-                                nav: false
-                            },
-                            667: {
-                                items: 1,
-                                nav: true
-                            },
-                            1000: {
-                                items: 1,
-                                nav: true
-                            }
-                        }
-                    })
-                })
-            </script>
+
             <!-- //script -->
             <!-- /main-slider -->
         </section>
@@ -260,7 +242,9 @@ Author URL: http://w3layouts.com
             </tr>
             </thead>
             <tbody>
+            {% if app.user %}{# verifier si user est connecté #}
             {% for constat in constats %}
+                {% if app.user.id==constat.user.id %}
                 <tr>
                     <td>{{ constat.id }}</td>
                     <td>{{ constat.dateaccident ? constat.dateaccident|date('Y-m-d') : '' }}</td>
@@ -276,6 +260,7 @@ Author URL: http://w3layouts.com
                             {% endif %}
                     <td>
                         <a href="{{ path('app_constat_showfront', {'id': constat.id}) }}"><img src="{{ asset('assets/img/detail.png') }}" height="30" width="30"></a>
+                        <a href="{{ path('app_constat_pdf', {'id': constat.id}) }}"><img src="{{ asset('assets/img/pdf.png') }}" height="30" width="30"></a>
                         {% if (((constat.vehicules)|length) ==2) %}
                         <a href="{{ path('app_vehicule_new', {'id': constat.id}) }}" onclick="return false;"><img src="{{ asset('assets/img/car-crash.png') }}" height="30" width="30"></a>
                         {% elseif (((constat.vehicules)|length) ==1)%}
@@ -286,13 +271,20 @@ Author URL: http://w3layouts.com
                             <a href="{{ path('app_vehicule_new', {'id': constat.id}) }}"><img src="{{ asset('assets/img/car-crash.png') }}" height="30" width="30"></a></td>
                             {% endif %}
                 </tr>
+                {% endif %}
             {% else %}
                 <tr>
                     <td colspan="11">Aucun Constat</td>
                 </tr>
             {% endfor %}
+            {% endif %}
             </tbody>
         </table>
+        <div >
+
+            {{ knp_pagination_render(constats) }}
+
+        </div>
     {% endblock %}
     <section class="partners py-5" id="partners">
         <div class="container py-md-3">
@@ -330,106 +322,35 @@ Author URL: http://w3layouts.com
     </section>
     <!-- footer -->
     <section class="w3l-footer-29-main">
-        <div class="footer-29">
-            <div class="container">
-                <div class="d-grid grid-col-4 footer-top-29">
-                    <div class="footer-list-29 footer-1">
-                        <h6 class="footer-title-29"><a href="index.html"><span class="fa fa-gg"></span> Corporite</a></h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, Cras at nunc sagittis, suscipit dolor nunc sagittis sed do eiusmod tempor incididunt ut., consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-
-                    </div>
-                    <div class="footer-list-29 footer-2">
-                        <ul>
-                            <h6 class="footer-title-29">Categories</h6>
-                            <li><a href="about.html">Our People </a></li>
-                            <li><a href="#">Latest Media</a></li>
-                            <li><a href="{{ path('app_reclamation_new') }}">Our Branches</a></li>
-
-                            <li><a href="services.html">Organisations</a></li>
-                            <li><a href="services.html">Help</a></li>
-
-                        </ul>
-                    </div>
-
-                    <div class="footer-list-29 footer-3">
+                <div id="mapid" style="height: 600px;"></div>
+                <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
 
 
-                        <h6 class="footer-title-29">Latest Posts</h6>
-                        <ul class="list-unstyled d-flex flex-wrap">
-                            <li class="">
-                                <div class="row">
-                                    <a class="col-md-5 col-4" href="#">
-                                        <img class="rounded img-fluid img-responsive" src="{{asset('assetsfront/images/g4.jpg')}}" alt="image">
-                                    </a>
-                                    <div class="col pl-0">
-                                        <a class="footer-small-text" href="#">Lorem ipsum dolor sit amet adipiscin elit</a>
-                                        <div class="text-sub-small text-white mt-2">April 10th, 2020</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mt-md-0 mt-2">
-                                <div class="row my-2 my-md-3">
-                                    <a class="col-md-5 col-4" href="#">
-                                        <img class="rounded img-fluid img-responsive" src="{{asset('assetsfront/images/g5.jpg')}}" alt="image">
-                                    </a>
-                                    <div class="col pl-0">
-                                        <a class="footer-small-text" href="#">Cras at nunc sagittis, suscipit dolor</a>
-                                        <div class="text-sub-small text-white mt-2">April 2nd, 2020 </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var map = L.map('mapid').setView([48.8566, 2.3522], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+                    minZoom: 1,
+                    maxZoom: 20
+                }).addTo(map);
 
+                var markers = {{ markers|json_encode()|raw }};
+                var constatsByLieu = {{ constatsByLieu|json_encode()|raw }};
 
-                    </div>
-                    <div class="footer-list-29 footer-4">
-                        <ul>
-                            <h6 class="footer-title-29">Quick Links</h6>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="#"> Blog</a></li>
-                            <li><a href="{{ path('app_reclamation_new') }}">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="d-grid grid-col-2 bottom-copies">
-                    <p class="copy-footer-29">© 2020 Corporite. All rights reserved | Designed by <a
-                                href="https://w3layouts.com">W3layouts</a></p>
-                    <div class="main-social-footer-29">
-                        <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
-                        <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
-                        <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
-                        <a href="#google-plus" class="google-plus"><span class="fa fa-google-plus"></span></a>
-                        <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- move top -->
-        <button onclick="topFunction()" id="movetop" title="Go to top">
-            <span class="fa fa-angle-up"></span>
-        </button>
-        <script>
-            // When the user scrolls down 20px from the top of the document, show the button
-            window.onscroll = function () {
-                scrollFunction()
-            };
-
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("movetop").style.display = "block";
-                } else {
-                    document.getElementById("movetop").style.display = "none";
+                for (var i = 0; i < markers.length; i++) {
+                    var marker = L.marker([markers[i].lat, markers[i].lng]).addTo(map);
+                    var popupContent = markers[i].popupContent;
+                    var nbConstats = constatsByLieu[popupContent] ?? 0;
+                    popupContent += "<br>" + nbConstats + " accidents";
+                    marker.bindPopup(popupContent);
                 }
-            }
+            });
 
-            // When the user clicks on the button, scroll to the top of the document
-            function topFunction() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            }
         </script>
+
+        <!-- move top -->
+
         <!-- /move top -->
     </section>
     <script src="{{asset('assetsfront/js/jquery-3.3.1.min.js')}}"></script>

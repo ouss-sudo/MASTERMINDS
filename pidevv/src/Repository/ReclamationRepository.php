@@ -39,6 +39,28 @@ class ReclamationRepository extends ServiceEntityRepository
         }
     }
 
+    public  function  triedecroissant()
+    {
+        return $this->createQueryBuilder('rec')
+            ->orderBy('rec.dateReclamation','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function countByDate(){
+        $query = $this->createQueryBuilder('r');
+        $query
+            ->select('SUBSTRING(r.dateReclamation , 1 , 10) as dateReclam , COUNT(r) as count')
+            ->groupBy('dateReclam')
+        ;
+        return $query->getQuery()->getResult();
+    }
+    public function findrecByobject($object){
+        return $this->createQueryBuilder('r')
+            ->where('r.objet LIKE :objet')
+            ->setParameter('objet', '%'.$object.'%')
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Reclamation[] Returns an array of Reclamation objects
 //     */

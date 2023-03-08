@@ -8,50 +8,47 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("reclamations:read")]
     private ?int $id = null;
 
-   #[ORM\Column(length: 100, nullable: true)]
-    private ?string $email = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     #[Assert\NotBlank(message:"Veuillez saisir l'objet de votre réclamation!")]//l'annotation Assert\NotBlank pour  s'assurer qu'un champs dans un formulaire n'est pas vide
+    #[Groups("reclamations:read")]
     private ?string $objet = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message:"Veuillez saisir les détails de votre réclamation")]
+    #[Groups("reclamations:read")]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups("reclamations:read")]
     private ?\DateTime $dateReclamation = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups("reclamations:read")]
     private ?\DateTime $dateTraitement = null;
 
     #[ORM\Column(length: 100)]
     private ?string $etat = 'En attente';
 
-   #[ORM\Column(length: 255, nullable: true)]
-    private ?string $nomclient = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $prenomclient = null;
-
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $numtelephone = null;
-
     #[ORM\OneToMany(mappedBy: 'reclamation', targetEntity: Reponse::class)]
     private Collection $reponses;
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'reclamations')]
+    private Collection $users;
 
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,17 +56,7 @@ class Reclamation
         return $this->id;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
 
-    public function setEmail(?string $mail): self
-    {
-        $this->email = $mail;
-
-        return $this;
-    }
 
     public function getObjet(): ?string
     {
@@ -131,41 +118,8 @@ class Reclamation
         return $this;
     }
 
-    public function getNomclient(): ?string
-    {
-        return $this->nomclient;
-    }
 
-    public function setNomclient(?string $nomclient): self
-    {
-        $this->nomclient = $nomclient;
 
-        return $this;
-    }
-
-    public function getPrenomclient(): ?string
-    {
-        return $this->prenomclient;
-    }
-
-    public function setPrenomclient(?string $prenomclient): self
-    {
-        $this->prenomclient = $prenomclient;
-
-        return $this;
-    }
-
-    public function getNumtelephone(): ?string
-    {
-        return $this->numtelephone;
-    }
-
-    public function setNumtelephone(?string $numTel): self
-    {
-        $this->numtelephone = $numTel;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Reponse>
@@ -193,6 +147,29 @@ class Reclamation
                 $reponse->setReclamation(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->users->removeElement($user);
 
         return $this;
     }

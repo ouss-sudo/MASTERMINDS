@@ -16,26 +16,23 @@ class ConstatType2 extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-           /* ->add('nomclient',TextType::class,[
-                'disabled'=>true
-            ])
-            ->add('prenomclient',TextType::class,[
-                'disabled'=>true
-            ])
-            ->add('email',TextType::class,[
-                'disabled'=>true
-            ])
-            ->add('numerodetelephone',TextType::class,[
-                'disabled'=>true
-            ])
             ->add('lieu',TextType::class,[
                 'disabled'=>true
-            ])*/
+            ])
+            ->add('dateaccident', DateType::class,[ 'placeholder' => [
+                'year' => 'Année', 'Mois' => 'Month', 'day' => 'Jours',],'disabled'=>true])
             ->add('etat',ChoiceType::class,[
                 'choices'=>[
                     'Traitée'=>'Traitée',
                     'En cours de traitement'=>'En cours de traitement',
                 ]
+            ])
+
+            ->add('imageFile',VichImageType::class,[
+                'allow_delete' => true,
+                'download_uri' => false,
+                'disabled'=>true,
+                'label'=>false,
             ])
 
         ;

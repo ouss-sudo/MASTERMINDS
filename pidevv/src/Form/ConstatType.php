@@ -17,7 +17,22 @@ class ConstatType extends AbstractType
         $builder
             ->add('dateaccident', DateType::class,[ 'placeholder' => [
                 'year' => 'Année', 'Mois' => 'Month', 'day' => 'Jours',]])
-            ->add('lieu', null,['label'=>false,'attr'=>['placeholder'=>'Lieu']])
+            ->add('lieu',ChoiceType::class,[
+                'choices'=>[
+                    'Tunis'=>'Tunis',
+                    'Sfax'=>'Sfax',
+                    'Sousse'=>'Sousse',
+                    'Kairouan'=>'Kairouan',
+                    'Métouia'=>'Métouia',
+                    'Kebili'=>'Kebili',
+                    'Bizerte'=>'Bizerte',
+                    'Sidi Bouzid'=>'Sidi Bouzid',
+                    'Gabés'=>'Gabés',
+                    'Ariana'=>'Ariana',
+                    'Béja'=>'Béja',
+
+                ]
+            ])
             ->add('imageFile',VichImageType::class,[
                 'allow_delete' => true,
                 'download_uri' => false,

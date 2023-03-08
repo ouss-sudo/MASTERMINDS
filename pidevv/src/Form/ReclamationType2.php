@@ -18,18 +18,6 @@ class ReclamationType2 extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomclient',TextType::class,[
-                'disabled'=>true
-            ])
-            ->add('prenomclient',TextType::class,[
-                'disabled'=>true
-            ])
-            ->add('email',TextType::class,[
-                'disabled'=>true
-            ])
-            ->add('numtelephone',TextType::class,[
-                'disabled'=>true
-            ])
             ->add('description',TextareaType::class,[
                 'disabled'=>true
             ])

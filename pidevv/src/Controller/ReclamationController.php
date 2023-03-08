@@ -9,22 +9,65 @@ use App\Form\ReclamationType2;
 use App\Form\ReponseType;
 use App\Repository\ReclamationRepository;
 use App\Repository\ReponseRepository;
-use Cassandra\Date;
+use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 #[Route('/reclamation')]
 class ReclamationController extends AbstractController
 {
     #[Route('/', name: 'app_reclamation_index', methods: ['GET'])]
-    public function index(ReclamationRepository $reclamationRepository): Response
+    public function index(ReclamationRepository $reclamationRepository,FlashyNotifier $flashy,PaginatorInterface $paginator,Request $request,NormalizerInterface $Normalizer): Response
     {
+        $donnees=$reclamationRepository->findAll();
+        $reclamations=$paginator->paginate(
+            $donnees,// Requête contenant les données à paginer (ici les publications)
+            $request->query->getInt('page',1),// Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            3   // Nombre de résultats par page
+        );
+        $nb=0;
+
+
+        foreach ($reclamations as $rec){
+            $currentdate=new \DateTime('now');
+            $creationdate=$rec->getDateReclamation();
+            $diff=date_diff($currentdate,$creationdate);
+            $days=intval($diff->format("%d"));
+            if($days>3 && $rec->getDateTraitement()==null){
+                $nb++;
+                $donnees=$reclamationRepository->triedecroissant();
+                $reclamations=$paginator->paginate(
+                    $donnees,// Requête contenant les données à paginer (ici les publications)
+                    $request->query->getInt('page',1),// Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+                    3  // Nombre de résultats par page
+                );
+
+                if($nb==1)
+                {
+                    $flashy->warning($nb.' réclamation a depassée 72h depuis sa création,veuillez la traiter plus tôt possible!', 'http://your-awesome-link.com');
+                }
+                else {
+
+
+                    $flashy->warning($nb . ' réclamation ont depassées 72h depuis leur création,veuillez les traiter plus tôt possible!', 'http://your-awesome-link.com');
+                }
+            }
+        }
+
+        $jsoncontent =$Normalizer->normalize($reclamations,'json',['groups'=>'reclamations:read']);
         return $this->render('reclamation/index.html.twig', [
-            'reclamations' => $reclamationRepository->findAll(),
+            'reclamations' => $reclamations,
+            json_encode($jsoncontent),
+
         ]);
     }
+
+
     #[Route('/indexfront', name: 'app_reclamation_indexfront', methods: ['GET'])]
     public function indexfront(ReclamationRepository $reclamationRepository): Response
     {
@@ -34,18 +77,21 @@ class ReclamationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReclamationRepository $reclamationRepository): Response
+    public function new(Request $request, ReclamationRepository $reclamationRepository,UserRepository $userRepository): Response
     {
         $reclamation = new Reclamation();
         $form = $this->createForm(ReclamationType::class, $reclamation);// créer un objet formulaire en utilisant la classe ReclamationType qui définit la structure et les comportements du formulaire, et de le lier à un objet $reclamation qui contient les données à afficher et à traiter dans le formulaire.
         $reclamation->setDateReclamation(new \DateTime('now'));
+        $connecteduser=$this->get('security.token_storage')->getToken()->getUser();//return connected user
+        $user=$userRepository->find($connecteduser->getId());
+        $reclamation->getUsers()->add($user);
         $form->handleRequest($request);//permet de récupérer les données du formulaire soumises par l'utilisateur et de les lier à l'objet de formulaire correspondant, afin de permettre le traitement ultérieur des données dans le contrôleur Symfony.
 
         if ($form->isSubmitted() && $form->isValid()) //isSubmitted pour vérifier  si le formulaire a été soumis et isValid si les données soumises sont valides.
         {
             $reclamationRepository->save($reclamation, true);
 
-            return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_reclamation_indexfront', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('reclamation/new.html.twig', [
@@ -80,9 +126,7 @@ class ReclamationController extends AbstractController
         $form->handleRequest($request);
         $reclamation->setDateTraitement(new \DateTime('now'));
         if ($form->isSubmitted() && $form->isValid()) {
-
             $reclamationRepository->save($reclamation, true);
-
             return $this->redirectToRoute('app_reponse_new', ['id'=>$reclamation->getId()]);
         }
 
@@ -91,7 +135,6 @@ class ReclamationController extends AbstractController
             'form' => $form,
         ]);
     }
-
 
 
     #[Route('/{id}', name: 'app_reclamation_delete', methods: ['POST'])]
@@ -105,5 +148,17 @@ class ReclamationController extends AbstractController
         }
 
         return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/s/search',name:'searchrec')]
+    public function searchrecbyobject(Request $request,NormalizerInterface $Normalizer,ReclamationRepository $repository):Response
+    {
+
+        $requestString=$request->get('search');
+        $reclamations = $repository->findrecByobject($requestString);
+        dump($reclamations);
+        $jsonContent = $Normalizer->normalize($reclamations, 'json', ['groups' => 'reclamations:read', 'MAX_DEPTH' => '1']);
+        $retour = json_encode($jsonContent);
+      return new Response($retour);
+
     }
 }

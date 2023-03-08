@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section class="section">
+<div style="display: flex;align-items: center;justify-content: center;margin-top: 80px; padding:45px;">
+<div class="card">
+<div class="row">
+<div class="col-lg-6">
+            <div class="card-body">
+              <h5 class="card-title">Default Table</h5>
+
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">email</th>
+          
+                    <th scope="col">lastname</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                {% for users in users %}
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>{{users.getemail}}</td>
+             
+                    <td>{{users.getlastname}}</td>
+                    
+                    <td class="hidden-column">
+                      <a class="btn btn-warning" href="{{ path('app_user_edit',{'id':users.id})}}">modifier</a>
+                    </td>
+                    <td class="hidden-column">
+                      <a class="btn btn-danger"href="{{ path('app_user_delete',{'id':users.id})}}">supprimer</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</section> 
+{% endblock %}

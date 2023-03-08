@@ -1,5 +1,5 @@
 {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }} {# est une option que l'on peut ajouter à une balise HTML <form> pour désactiver la validation automatique HTML5 #}
-<img src="{{vich_uploader_asset(constat,'imageFile') }}" width="200" height="200">
+
 {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

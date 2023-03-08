@@ -13,6 +13,14 @@
                 <td>{{ constat.id }}</td>
             </tr>
             <tr>
+                <th>Id</th>
+                <td>{{ constat.user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ constat.user.email }}</td>
+            </tr>
+            <tr>
                 <th>Dateaccident</th>
                 <td>{{ constat.dateaccident ? constat.dateaccident|date('Y-m-d') : '' }}</td>
             </tr>
@@ -32,6 +40,15 @@
                 <th>Etat</th>
                 <td>{{ constat.etat }}</td>
             </tr>
+            <tr>
+                <th>client</th>
+                <td>{{constat.user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{constat.user.email }}</td>
+            </tr>
+           
             <tr>
                 <th scope="col">Les véhicules</th>
             </tr>
