@@ -1,83 +1,233 @@
+<style>
 
+*
+{
+	border: 0;
+	box-sizing: content-box;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	vertical-align: top;
+}
 
+/* content editable */
 
-{% block body %}
+*[contenteditable] { border-radius: 0.25em; min-width: 1em; outline: 0; }
 
+*[contenteditable] { cursor: pointer; }
 
-<div class="row">
- <div  style="display: flex;align-items: center;justify-content: center; width:1000px;">
-            
-<i class="i-"></i>
-              <!-- Table with stripped rows -->
-              <table class="table table-striped">
-                <thead>
-               
-                                 {% for rapport in b %} 
+*[contenteditable]:hover, *[contenteditable]:focus, td:hover *[contenteditable], td:focus *[contenteditable], img.hover { background: #DEF; box-shadow: 0 0 1em 0.5em #DEF; }
 
-    <tr> 
-    
-   <th>num_rapport</th>
-   <td>{{rapport.getId()}}</td>
-    </tr>
-    <tr>
+span[contenteditable] { display: inline-block; }
 
-   <th>date_rapport</th>
-   <td>{{ rapport.getDateRapport|date('Y-m-d') }}</td>
-       </tr>
-           <tr>
-   <th>num_serievoiture</th>
-   <td>{{rapport.getNumSerievoiture()}}</td>
-       </tr>
-    <tr>
-   <th>modele_voiture</th>
-   <td>{{rapport.getModeleVoiture()}}</td>
-       </tr> 
-   <th>matricule</th>
-   <td>{{rapport.getMatricule()}}</td>
-       </tr>
-    <tr>
+/* heading */
 
-<th>couleur_voiture</th>
-<td>{{rapport.getCouleurVoiture()}}</td>
-    </tr>
-    <tr>
-   <th>dateMiseEnCirculation</th>
-   <td>{{ rapport.getDateMiseEnCirculation|date('Y-m-d') }}</td>
+h1 { font: bold 100% sans-serif; letter-spacing: 0.25em; text-align: center; text-transform: uppercase; }
 
-       </tr>
-    <tr>
-<th> mandant</th>    
-<td>{{rapport.getMandant()}}</td>
-</tr>
-  
-    <tr>
+/* table */
 
-   <th> conclusions</th>
-   <td class="hidden-column">{{rapport.getConclusions()}}</td>
-       </tr>
-   
-        <tr>
-   <th> montant_exprime</th>
-   <td class="hidden-column">{{rapport.getMontantExprime()}}</td>
-       </tr>
- 
-      
-  
-             
+table { font-size: 75%; table-layout: fixed; width: 100%; }
+table { border-collapse: separate; border-spacing: 2px; }
+th, td { border-width: 1px; padding: 0.5em; position: relative; text-align: left; }
+th, td { border-radius: 0.25em; border-style: solid; }
+th { background: #EEE; border-color: #BBB; }
+td { border-color: #DDD; }
 
+/* page */
 
+html { font: 16px/1 'Open Sans', sans-serif;   }
+html { background: #999; cursor: default; }
 
+body { box-sizing: border-box; height: 11in; margin: 0 auto;  }
+body { background: #FFF; border-radius: 1px; box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); }
 
-</tr>
+/* header */
 
-{% endfor %}
-                 
-                </tbody>
-              </table>
-             
+header { margin: 0 0 3em; }
+header:after { clear: both; content: ""; display: table; }
 
+header h1 { background: #ddd; border-radius: 0.25em; font: bold; color: #000; margin: 0 0 1em; padding: 0.5em 0; }
+header address {font-size: 75%; font-style: normal; line-height: 1.25; margin: 0 1em 1em 0; }
+header .t1 {float:left;}
+header .t2 {float:right;}
+header address p { margin: 0 0 0.25em; }
+header span, header img { display: block; float: right; }
+header span { margin: 0 0 1em 1em; max-height: 25%; max-width: 60%; position: relative; }
+header .cible {float:right;}
+header img { max-height: 100%; max-width: 100%; }
+header input { cursor: pointer; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+
+/* article */
+
+article, article address, table.meta, table.inventory { margin: 0 0 3em; }
+article:after { clear: both; content: ""; display: table; }
+article h1 { clip: rect(0 0 0 0); position: absolute; }
+
+article address { float: left; font-size: 125%; font-weight: bold; }
+
+/* table meta & balance */
+
+table.meta, table.balance { float: right; width: 36%; }
+table.meta:after, table.balance:after { clear: both; content: ""; display: table; }
+
+/* table meta */
+
+table.meta th { width: 40%; }
+table.meta td { width: 60%; }
+
+/* table items */
+
+table.inventory { clear: both; width: 100%; }
+table.inventory th { font-weight: bold; text-align: center; }
+
+table.inventory td:nth-child(1) { width: 26%; }
+table.inventory td:nth-child(2) { width: 38%; }
+table.inventory td:nth-child(3) { text-align: right; width: 12%; }
+table.inventory td:nth-child(4) { text-align: right; width: 12%; }
+table.inventory td:nth-child(5) { text-align: right; width: 12%; }
+
+/* table balance */
+
+table.balance th, table.balance td { width: 50%; }
+table.balance td { text-align: right; }
+
+/* aside */
+
+aside h1 { border: none; border-width: 0 0 1px; margin: 0 0 1em; }
+aside h1 { border-color: #999; border-bottom-style: solid; }
+
+/* javascript */
+
+.add, .cut
+{
+	border-width: 1px;
+	display: block;
+	font-size: .8rem;
+	padding: 0.25em 0.5em;	
+	float: left;
+	text-align: center;
+	width: 0.6em;
+}
+
+.add, .cut
+{
+	background: #9AF;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	background-image: -moz-linear-gradient(#00ADEE 5%, #0078A5 100%);
+	background-image: -webkit-linear-gradient(#00ADEE 5%, #0078A5 100%);
+	border-radius: 0.5em;
+	border-color: #0076A3;
+	color: #FFF;
+	cursor: pointer;
+	font-weight: bold;
+	text-shadow: 0 -1px 2px rgba(0,0,0,0.333);
+}
+
+.add { margin: -2.5em 0 0; }
+
+.add:hover { background: #00ADEE; }
+
+.cut { opacity: 0; position: absolute; top: 0; left: -1.5em; }
+.cut { -webkit-transition: opacity 100ms ease-in; }
+
+tr:hover .cut { opacity: 1; }
+
+@media print {
+	* { -webkit-print-color-adjust: exact; }
+	html { background: none; padding: 0; }
+	body { box-shadow: none; margin: 0; }
+	span:empty { display: none; }
+	.add, .cut { display: none; }
+}
+
+@page { margin: 0; }
+.aa {
+  color: orange;
+  margin: 0;
+  margin-top: 1rem;
+  font-family: "Helvetica", Helvetica, Arial, sans-serif;
+}
+.AAA {
+    margin: 0;
+    margin-top: 2rem;
+}
+</style>
+
+<html>
+	
+	<body>
+		<header>
+		<div class="AAA">	<h1>RAPPORT</h1> </div>
+         <div class="aa">  <strong> <h2>ASSURTOUT</h2></strong></div>
+        <address class="t1" contenteditable>
            
-
- </div>
-</div>
-{% endblock %}
+          <p>[ARIANA SOGHRA]<br>[8011, ARIANA]</p>
+          <p>tel:+21699999999]</p>
+        </address>
+        
+		</header>
+		<article>
+			
+			<table class="meta">
+             {% for rapport in b %} 
+				<tr>
+					<th><span>N°</span></th>
+					<td>{{rapport.getId()}}</span></td>
+				</tr>
+				<tr>
+					<th><span>date_rapport</span></th>
+					<td>{{ rapport.getDateRapport|date('Y-m-d') }}</span></td>
+				</tr>
+				<tr>
+					<th><span>DateEnCirculation</span></th>
+					<td>{{ rapport.getDateMiseEnCirculation|date('Y-m-d') }}</span></td>
+				</tr>
+			</table>
+			<table class="inventory">
+				<thead>
+					<tr>
+            
+						<th><span>num_serievoiture</span></th>
+						<th><span>conclusions</span></th>
+						<th><span>matricule</span></th>
+						<th><span>couleur_voiture</span></th>
+                        <th><span>modele_voiture</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+            <td><span contenteditable>{{rapport.getNumSerievoiture()}} </span></td>
+						<td><span contenteditable>{{rapport.getConclusions()}}</span></td>
+						<td><span data-prefix>{{rapport.getMatricule()}}</span><span contenteditable></span></td>
+						<td><span contenteditable>{{rapport.getCouleurVoiture()}}</span></td>
+						<td><span data-prefix>{{rapport.getModeleVoiture()}}</span><span></span></td>
+                        
+					</tr>
+                    
+				</tbody>
+                
+			</table>
+			
+			<table class="balance">
+				<tr>
+					<th><span>mandant</span></th>
+					<td><span data-prefix></span><span>{{rapport.getMandant()}}DT</span></td>
+				</tr>
+				<tr>
+					<th><span>montant_exprime</span></th>
+					<td><span data-prefix></span><span contenteditable>{{rapport.getMontantExprime()}}DT</span></td>
+				</tr>
+				
+                {% endfor %}
+			</table>
+		</article>
+	
+	</body>
+</html>

@@ -32,6 +32,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use App\Controller\AdvancedSearchType ;
+use Symfony\Component\Mime\FileinfoMimeTypeGuesser;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class RemboursementController extends AbstractController
 {
     #[Route('/basefront', name: 'basefront')]
@@ -170,7 +172,7 @@ $form->handleRequest($request);
         $rapports = $this->getDoctrine()->getManager()->getRepository(Rapport::class)->findAll() ; 
         return $this->render('remboursement/pdf.html.twig', ['b'=>$rapports]);
     }*/
-    #[Route('/download', name: 'users_dataa')]
+    #[Route('/downloadpdf', name: 'users_dataa')]
     public function Downloadpdf(Request $request)
     {
         $pdfOptions = new Options();
@@ -261,7 +263,7 @@ $form->handleRequest($request);
         return $this->render("remboursement/qr_code.html.twig", ['id' => $id]);
     }
 
-    #[Route('/QrCode/generate/{id}', name: 'app_qr_codes')]
+    /*#[Route('/QrCode/generate/{id}', name: 'app_qr_codes')]
     public function qrGenerator(ManagerRegistry $doctrine, $id, RapportRepository $repo)
     {
         $em = $doctrine->getManager();
@@ -282,7 +284,31 @@ $form->handleRequest($request);
             ['content-type' => 'image/png']
         );
 
-    }
+    }*/
+   
+#[Route('/QrCode/generate/{id}', name: 'app_qr_codes')]
+public function qrGenerator(ManagerRegistry $doctrine, $id, RapportRepository $repo, UrlGeneratorInterface $urlGenerator)
+{
+    $em = $doctrine->getManager();
+    $res = $repo->find($id);
+    $pdfUrl = $urlGenerator->generate('users_dataa', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL);
+    
+    $qrcode = QrCode::create($pdfUrl)
+        ->setEncoding(new Encoding('UTF-8'))
+        ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+        ->setSize(300)
+        ->setMargin(10)
+        ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin())
+        ->setForegroundColor(new Color(0, 0, 0))
+        ->setBackgroundColor(new Color(255, 255, 255));
+    
+    $writer = new PngWriter();
+    return new Response($writer->write($qrcode)->getString(),
+        Response::HTTP_OK,
+        ['content-type' => 'image/png']
+    );
+}
+
   
 
 #[Route('/download-excel', name: 'users_data_excel')]
