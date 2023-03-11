@@ -144,7 +144,6 @@
                 /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
                 var value = $(this).val();
                 /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
-
                 $.ajax({
                     /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
                     url : "{{ path('searchremb') }}",
@@ -160,7 +159,6 @@
                             $('#t tbody#search').empty();
                             $.each(JSON.parse(retour), function(i, obj) {
                                 $('#t tbody#all').hide();
-
                                 $('#t tbody#search').append('<tr><td> '+obj.id+'</td><td>'+obj.getDateRapport+'</td><td>'+obj.getNumSerievoiture()+'</td><td>'+obj.dateconstat+'</td><td>'+obj.imageaccident+'</td><td>'+obj.etat+'</td><td><a href="/constat/'+obj.id+'/edit">Modifier</a></td></tr>');
                             });
                         }
